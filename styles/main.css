@@ -1,0 +1,119 @@
+/**
+ * Auteur   : CARDINAL Florian
+ * Date     : 02/05/2020 14:01
+ * Page     : main.css
+ * Location : /styles/
+ */
+
+* {
+	font-family: "Lato", sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+/**
+* Splash Screen Style
+*/
+#splash {
+	background: rgb(220, 220, 220);
+	display: block;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+
+#splash h1 {
+	animation: 3s linear 1s infinite alternate splash;
+	color: rgb(50, 50, 50);
+	font-family: "ROCKET";
+	font-size: 7.5em;
+	left: 50%;
+	letter-spacing: .1em;
+	position: absolute;
+	text-shadow: 0 0 20px currentColor,
+		0 0 40px currentColor,
+		0 0 60px currentColor;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/**
+* Form Style
+*/
+form {
+	display: block;
+}
+
+form .input-area {
+	display: block;
+	position: relative;
+}
+
+form .input-area label {
+	color: rgb(50, 50, 50);
+	margin-left: 1.75em;
+	position: absolute;
+	top: .5em;
+	transition: .25s all;
+	z-index: -1;
+}
+
+form .input-area label::first-letter {
+	text-transform: uppercase;
+}
+
+form .input-area input {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid currentColor;
+	box-shadow: none;
+	color: rgb(50, 50, 50);
+	display: block;
+	font-size: 1em;
+	margin: .25em 0 1.5em 0;
+	outline: none;
+	padding: .5em .25em .5em 1.75em;
+	transition: .2s all;
+}
+
+form .input-area input:valid {
+	border-color: rgb(0, 250, 100);
+}
+
+form .input-area input:focus {
+	border-color: rgb(0, 150, 250);
+}
+
+form .input-area input:focus ~ label,
+form .input-area input:valid ~ label {
+	font-size: .75em;
+	margin-left: 0;
+	top: -1em;
+}
+
+form input[type="submit"] {
+	background: rgb(0, 250, 100);
+	border: 1px solid rgb(0, 250, 100);
+	border-radius: .25em;
+	box-sizing: border-box;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	display: block;
+	font-size: 1.25em;
+	margin: 1.5em 0 0 0;
+	padding: .5em;
+	text-transform: capitalize;
+	transition: .2s all;
+	width: 100%;
+}
+
+form input[type="submit"]:hover {
+	background: transparent;
+	color: rgb(0, 250, 100);
+}

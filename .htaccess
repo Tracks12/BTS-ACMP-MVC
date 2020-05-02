@@ -1,0 +1,7 @@
+php_value display_errors 1
+php_flag output_buffering on
+
+Options -Indexes -FollowSymLinks -MultiViews
+
+ErrorDocument 403 /
+ErrorDocument 404 /

@@ -1,0 +1,37 @@
+/**
+ * Project  : Capteur ACMP
+ * Date     : 25/05/2020
+ * Autor    : CARDINAL Florian
+ * Nom      : fonts.css
+ * Location : /assets/styles/
+ */
+
+/**
+* Monospace Font Integration
+*/
+@font-face {
+	font-family: "Monospace";
+	src: url('/assets/fonts/Monospace/Monospace.woff') format('woff');
+}
+
+/**
+ * Lato Font Integration
+ */
+@font-face {
+	font-family: "Lato";
+	src: url('/assets/fonts/Lato/Lato-Regular.woff') format('woff');
+}
+
+/**
+ * ROCKET Font Integration
+ */
+@font-face {
+	font-family: "ROCKET";
+	src: url('/assets/fonts/ROCKET/ROCKET_WILDNESS.otf') format("otf"),
+		url('/assets/fonts/ROCKET/ROCKET_WILDNESS.ttf') format("ttf"),
+		url('/assets/fonts/ROCKET/ROCKET_WILDNESS.woff') format("woff");
+}
+
+/**
+ * END
+ */

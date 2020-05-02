@@ -1,0 +1,4 @@
+*.ftpconfig
+*.ftpignore
+connect.php
+_config.yml
