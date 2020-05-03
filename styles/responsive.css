@@ -1,0 +1,53 @@
+/**
+ * Auteur   : CARDINAL Florian
+ * Date     : 02/05/2020 14:01
+ * Page     : responsive.css
+ * Location : /styles/
+ */
+
+@media(max-width: 720px) {
+	/**
+	 * Nav Bar Responsive
+	 */
+	nav {
+		overflow: auto;
+		max-height: 100%;
+		padding-left: 0;
+		position: fixed;
+	}
+
+	nav div { display: block; }
+
+	nav ul {
+		display: none;
+		position: relative;
+	}
+
+	nav ul li {
+		display: block;
+		overflow: auto;
+	}
+
+	nav ul .title {
+		left: inherit;
+		right: 0;
+		top: 0;
+	}
+
+	nav ul .button:last-child {
+		border-top: 1px solid rgba(255, 255, 255, .2);
+		margin-top: 5px;
+		position: inherit;
+		right: inherit;
+	}
+
+	nav ul ul {
+		background: rgb(45, 45, 45);
+		box-shadow: none;
+		position: relative;
+	}
+}
+
+/**
+ * END
+ */
