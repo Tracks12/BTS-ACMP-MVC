@@ -27,6 +27,7 @@ nav {
 	padding-left: 8em;
 	position: fixed;
 	width: 100%;
+	z-index: 1;
 }
 
 nav div {
@@ -122,6 +123,29 @@ nav ul li .row {
 		0 0 60px currentColor;
 	top: 50%;
 	transform: translate(-50%, -50%);
+}
+
+/**
+ * Section Area
+ */
+section {
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	top: 0;
+}
+
+section aside {
+	padding-top: 3.5em;
+}
+
+/**
+ * Here Map
+ */
+#map {
+	background: rgb(150, 150, 150);
+	height: 100%;
+	width: 100%;
 }
 
 /**

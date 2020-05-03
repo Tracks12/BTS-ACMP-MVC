@@ -26,14 +26,19 @@
 
 
 
+		case "/map": // About Page
+			http_response_code(200);
+			$page = 'map.php';
+			break;
+
 		case "/about": // About Page
 			http_response_code(200);
-			$page = 'about/about.php';
+			$page = 'about.php';
 			break;
 
 		case "/telemetry": // About Page
 			http_response_code(200);
-			$page = 'telemetry/telemetry.php';
+			$page = 'telemetry.php';
 			break;
 	}
 

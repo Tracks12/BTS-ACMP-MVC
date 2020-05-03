@@ -15,6 +15,27 @@
 			$req = $bdd->query('
 				SELECT *
 				FROM `captors`
+				WHERE 1
+			');
+
+			return $req->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		/**
+		 * get return of datas by captors
+		 * @return array datas by captors
+		 */
+		public function getDataByCaptor() {
+			$bdd = bdd::connect();
+			$req = $bdd->query('
+				SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
+				FROM `data`
+				JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+				JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+				JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
+				WHERE 1
+				ORDER BY `measures`.idMeasure
+				DESC
 			');
 
 			return $req->fetchAll(PDO::FETCH_ASSOC);

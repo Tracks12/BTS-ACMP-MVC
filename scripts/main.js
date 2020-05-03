@@ -5,7 +5,17 @@
  * Location : /scripts/
  */
 
+// Connexion au service Here
+const platform = new H.service.Platform({
+	apikey: "MrQdjSM58WPTG8w0Blb7-CiGBPquXZLKfpwVNzI6zcQ"
+});
+
 $(document).ready(() => {
+	// Dynamic URI
+	let uri = window.location.hash.split('#')[1];
+	uri = !uri ? 'map' : uri;
+	$('section').load(`/${uri}`);
+
 	// Splash Screen Animation
 	$('#splash').ready(() => {
 		$('#splash h1')
@@ -28,6 +38,11 @@ $(document).ready(() => {
 				.find('ul')
 				.slideToggle();
 	});
+
+	$('nav ul li a').click(function() {
+		let href = $(this).attr('href').split('#')[1];
+		$('section').load(`/${href}`);
+	})
 
 	$(window).resize(() => {
 		if($(window).width() > 720)
