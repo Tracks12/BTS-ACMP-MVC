@@ -1,4 +1,4 @@
 <!-- ABOUT -->
 <aside>
-	<h2>about</h2>
+	<h2>à propos</h2>
 </aside>

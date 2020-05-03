@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- TELEMETRY -->
+<!-- INSTANT -->
 <aside>
 	<style type="text/css">
 		.highcharts-figure .chart-container {
@@ -52,7 +52,7 @@
 			}
 		}
 	</style>
-	<h2>telemetry</h2>
+	<h2>temps réel</h2>
 	<br />
 	<figure class="highcharts-figure">
 		<div id="container-speed" class="chart-container"></div>

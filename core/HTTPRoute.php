@@ -31,14 +31,24 @@
 			$page = 'map.php';
 			break;
 
+		case "/telemetry": // About Page
+			http_response_code(200);
+			$page = 'telemetry/telemetry.php';
+			break;
+
+		case "/instant": // About Page
+			http_response_code(200);
+			$page = 'telemetry/instant.php';
+			break;
+
+		case "/story": // About Page
+			http_response_code(200);
+			$page = 'telemetry/story.php';
+			break;
+
 		case "/about": // About Page
 			http_response_code(200);
 			$page = 'about.php';
-			break;
-
-		case "/telemetry": // About Page
-			http_response_code(200);
-			$page = 'telemetry.php';
 			break;
 	}
 
