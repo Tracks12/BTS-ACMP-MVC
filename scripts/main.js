@@ -44,6 +44,11 @@ $(document).ready(() => {
 		$('section').load(`/${href}`);
 	})
 
+	$('section').click(() => {
+		if($(window).width() < 720)
+			$('nav ul').slideUp();
+	});
+
 	$(window).resize(() => {
 		if($(window).width() > 720)
 			$('nav ul').removeAttr('style');
