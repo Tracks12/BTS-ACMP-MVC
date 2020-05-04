@@ -23,11 +23,20 @@ After cloning the repository you need to create the database connection file in 
 ```php
 <?php
 	class bdd {
-		public static function disconnect() {
-			return self::$bdd['db'] = NULL;
+		/**
+		 * disconnect to the database
+		 * @return void
+		 */
+		public static function disconnect(): void {
+			self::$bdd['db'] = NULL;
+			return;
 		}
 
-		public static function connect() {
+		/**
+		 * connect to the database
+		 * @return object[PDO] database object
+		 */
+		public static function connect(): PDO {
 			try {
 				self::$bdd['db'] = new PDO(
 					'mysql:host='.self::$bdd['host'].'; dbname='.self::$bdd['name'].'; charset='.self::$bdd['char'],
