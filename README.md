@@ -205,6 +205,21 @@ switch(services::isInput($_SERVER['REQUEST_URI'])) {
 }
 ```
 
+And the query response appears in JSON format.
+
+```php
+switch(http_response_code()) {
+	case 200:
+		echo(json_encode($return));
+		break;
+
+	default:
+		echo(json_encode($return));
+		die();
+		break;
+}
+```
+
 ---
 
 ## Last Update
