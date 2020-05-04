@@ -48,7 +48,7 @@
 	}
 
 	/**
-	 * Global Menu
+	 * Global Menu Responsive
 	 */
 	.global-menu {
 		top: 4em;
@@ -65,9 +65,13 @@
 }
 
 @media (max-width: 600px) {
+	/**
+	 * Gauge Responsive
+	 */
 	#instant .highcharts-figure, .highcharts-data-table table {
 		width: 100%;
 	}
+
 	#instant .highcharts-figure .chart-container {
 		width: 300px;
 		float: none;
