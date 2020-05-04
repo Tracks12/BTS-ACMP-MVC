@@ -8,6 +8,55 @@ BTS training project, a map displaying telemetry data from the LoraWan pollution
 
 ---
 
+## Clone the repository
+
+### Windows Users
+* Download & Install [Git Bash](https://gitforwindows.org/)
+
+### Linux Users
+* Type `sudo apt install git` on your terminal
+
+After Git installation type `git clone https://github.com/Tracks12/BTS-ACMP-MVC.git` to clone the repository.
+
+After cloning the repository you need to create the database connection file in the `/core` directory which will be called `connect.php` with inside:
+
+```php
+<?php
+	class bdd {
+		public static function disconnect() {
+			return self::$bdd['db'] = NULL;
+		}
+
+		public static function connect() {
+			try {
+				self::$bdd['db'] = new PDO(
+					'mysql:host='.self::$bdd['host'].'; dbname='.self::$bdd['name'].'; charset='.self::$bdd['char'],
+					self::$bdd['user'],
+					self::$bdd['pass'],
+					[ PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING ]
+				);
+			}
+
+			catch(Exception $e) {
+				die("[Err]:[{$e->getmessage()}]");
+			}
+
+			return self::$bdd['db'];
+		}
+
+		private static $bdd = [
+			"db"   => NULL,
+			"host" => "...",
+			"name" => "...",
+			"char" => "utf8",
+			"user" => "...",
+			"pass" => "...-"
+		];
+	}
+```
+
+---
+
 ## Dépendances
 
 ### Front (Styles & Scripts)
@@ -49,7 +98,6 @@ Retrieves the last data from a desired sensor and displays it at a gauge in js
 
 * story data: `/core/views/telemetry/story.php`
 Displays graphs of pollution sensor data (Ozones, CO2, Fine Particles)
-
 
 ### Map
 
