@@ -10,7 +10,7 @@
 		 * get return of captors table
 		 * @return array captors
 		 */
-		public function getCaptors() {
+		public function getCaptors(): array {
 			$bdd = bdd::connect();
 			$req = $bdd->query('
 				SELECT *
@@ -25,7 +25,7 @@
 		 * get return of datas by captors
 		 * @return array datas by captors
 		 */
-		public function getDataByCaptor() {
+		public function getDataByCaptor(): array {
 			$bdd = bdd::connect();
 			$req = $bdd->query('
 				SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
@@ -39,6 +39,26 @@
 			');
 
 			return $req->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		/**
+		 * get last value for a physic measure
+		 * @param string $measureName measure name
+		 * @return array last value
+		 */
+		public function getLastValueFor($measureName): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query('
+				SELECT `Name`, `value`
+				FROM `measures`
+				JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+				WHERE `measuresName`.Name = "CO2"
+				ORDER BY `measures`.idMeasure
+				DESC
+				LIMIT 1
+			');
+
+			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
 		}
 	}
 

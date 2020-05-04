@@ -10,8 +10,9 @@
 		 * Redirect URI
 		 */
 
-		case '/?ping':
-			$return = [ "response" => "pong" ];
+		case '/?getLastValueFor':
+			$arr = ACMPModel::getLastValueFor(services::isInput($_POST['measureName']));
+			$return = [ "response" => $arr ];
 			break;
 
 		default:

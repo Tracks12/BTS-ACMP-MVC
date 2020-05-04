@@ -132,7 +132,7 @@
 		var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
 		  yAxis: {
 	      min: 0,
-	      max: 200,
+	      max: 10000,
 	      title: {
           text: 'Speed'
 	      }
@@ -144,16 +144,16 @@
 
 		  series: [{
 	      name: 'Speed',
-	      data: [80],
+	      data: [0],
 	      dataLabels: {
           format:
             '<div style="text-align:center">' +
             '<span style="font-size:25px">{y}</span><br/>' +
-            '<span style="font-size:12px;opacity:0.4">km/h</span>' +
+            '<span style="font-size:12px;opacity:0.4">ppm</span>' +
             '</div>'
 	      },
 	      tooltip: {
-          valueSuffix: ' km/h'
+          valueSuffix: ' ppm'
 	      }
 		  }]
 		}));
@@ -161,23 +161,12 @@
 		if(gaugeInterval)
 			clearInterval(gaugeInterval);
 
-		// Bring life to the dials
 		var gaugeInterval = setInterval(() => {
-		  // Speed
-		  var point,
-	      newVal,
-	      inc;
+		  // CO2 Update
+		  var point;
 
-		  if(chartSpeed) {
-	      point = chartSpeed.series[0].points[0];
-	      inc = Math.round((Math.random() - 0.5) * 100);
-	      newVal = point.y + inc;
-
-	      if(newVal < 0 || newVal > 200)
-          newVal = point.y - inc;
-
-	      point.update(newVal);
-		  }
+		  if(chartSpeed)
+				xhr.getLastValueFor(chartSpeed.series[0].points[0], 'CO2');
 		}, 2000);
 	</script>
 </aside>

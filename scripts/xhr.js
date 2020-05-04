@@ -10,15 +10,18 @@
 
 class xhr {
 	/**
-	 * xhr request for contact form
+	 * get last value from measure name
+	 * @param {object} box html object to update
+	 * @param {string} measureName measure name
 	 */
-	static ping(data) {
+	static getLastValueFor(box, measureName) {
 		$.ajax({
-			type: 'POST',
-			url: '/?ping',
+			url: '/?getLastValueFor',
+			type: 'post',
+			data: `measureName=${measureName}`,
 			dataType: 'json',
 			success: (result) => {
-				console.log(result);
+				box.update(parseInt(result.response.value));
 			}
 		});
 	}
