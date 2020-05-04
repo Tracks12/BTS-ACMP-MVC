@@ -1,7 +1,9 @@
 /**
- * Auteur : CARDINAL Florian
- * Date   : 29/04/2020 23:27
- * Page   : scrolly.js
+ * Autor    : CARDINAL Florian
+ * Project  : Capteur ACMP
+ * Date     : 04/05/2020
+ * Location : /scripts/
+ * Nom      : scrolly.js
  */
 
 "use strict";

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- INSTANT -->
-<aside>
-	<style type="text/css">
+<aside id="instant">
+	<style rel="stylesheet" type="text/css">
 		.highcharts-figure .chart-container {
 			width: 300px;
 			height: 200px;
@@ -56,7 +56,6 @@
 	<br />
 	<figure class="highcharts-figure">
 		<div id="container-speed" class="chart-container"></div>
-		<div id="container-rpm" class="chart-container"></div>
 		<p class="highcharts-description">
 			Chart demonstrating solid gauges with dynamic data. Two separate charts
 			are used, and each is updated dynamically every few seconds. Solid
@@ -125,7 +124,7 @@
 		  }
 		};
 
-		// The speed gauge
+		// CO2
 		var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
 		  yAxis: {
 	      min: 0,
@@ -153,36 +152,6 @@
           valueSuffix: ' km/h'
 	      }
 		  }]
-
-		}));
-
-		// The RPM gauge
-		var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
-		  yAxis: {
-	      min: 0,
-	      max: 5,
-	      title: {
-          text: 'RPM'
-	      }
-		  },
-
-		  series: [{
-	      name: 'RPM',
-	      data: [1],
-	      dataLabels: {
-          format:
-            '<div style="text-align:center">' +
-            '<span style="font-size:25px">{y:.1f}</span><br/>' +
-            '<span style="font-size:12px;opacity:0.4">' +
-            '* 1000 / min' +
-            '</span>' +
-            '</div>'
-	      },
-	      tooltip: {
-          valueSuffix: ' revolutions/min'
-	      }
-		  }]
-
 		}));
 
 		if(gaugeInterval)
@@ -200,22 +169,8 @@
 	      inc = Math.round((Math.random() - 0.5) * 100);
 	      newVal = point.y + inc;
 
-	      if (newVal < 0 || newVal > 200) {
-	          newVal = point.y - inc;
-	      }
-
-	      point.update(newVal);
-		  }
-
-		  // RPM
-		  if(chartRpm) {
-	      point = chartRpm.series[0].points[0];
-	      inc = Math.random() - 0.5;
-	      newVal = point.y + inc;
-
-	      if (newVal < 0 || newVal > 5) {
-	          newVal = point.y - inc;
-	      }
+	      if(newVal < 0 || newVal > 200)
+          newVal = point.y - inc;
 
 	      point.update(newVal);
 		  }

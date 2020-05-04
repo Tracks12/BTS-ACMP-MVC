@@ -46,6 +46,22 @@
 		box-shadow: none;
 		position: relative;
 	}
+
+	/**
+	 * Global Menu
+	 */
+	.global-menu {
+		top: 4em;
+		transform: inherit;
+	}
+
+	.global-menu .item {
+		display: block;
+		width: auto;
+	}
+	.global-menu .item:hover {
+		width: auto;
+	}
 }
 
 /**

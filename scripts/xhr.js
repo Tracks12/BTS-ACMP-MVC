@@ -1,7 +1,9 @@
 /**
- * Auteur : CARDINAL Florian
- * Date   : 22/12/2018 17:19
- * Page   : xhr.js
+ * Autor    : CARDINAL Florian
+ * Project  : Capteur ACMP
+ * Date     : 04/05/2020
+ * Location : /scripts/
+ * Nom      : xhr.js
  */
 
 "use strict";
@@ -9,26 +11,14 @@
 class xhr {
 	/**
 	 * xhr request for contact form
-	 * @param {string} data URI request
 	 */
-	static contact(data) {
+	static ping(data) {
 		$.ajax({
 			type: 'POST',
-			url: '/?contact',
-			data: data,
+			url: '/?ping',
 			dataType: 'json',
 			success: (result) => {
-				if(result.passed) {
-					$('#contact .ty').css('display', 'block');
-					$('#contact form')[0].reset();
-				}
-				else {
-					$('#contact #fName .error').html(result.error.fname);
-					$('#contact #name .error').html(result.error.name);
-					$('#contact #mail .error').html(result.error.mail);
-					$('#contact #phone .error').html(result.error.tel);
-					$('#contact #msg .error').html(result.error.msg);
-				}
+				console.log(result);
 			}
 		});
 	}

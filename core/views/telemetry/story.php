@@ -1,5 +1,5 @@
 <!-- STORY -->
-<aside>
+<aside id="story">
 	<h2>story</h2>
 	<article>
 		<!--(texte expliquant comment fonctionne ce graphique)-->

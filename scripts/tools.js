@@ -1,7 +1,9 @@
 /**
- * Auteur : CARDINAL Florian
- * Date   : 24/03/2020 21:05
- * Page   : tools.js
+ * Autor    : CARDINAL Florian
+ * Project  : Capteur ACMP
+ * Date     : 04/05/2020
+ * Location : /scripts/
+ * Nom      : tools.js
  */
 
 "use strict";

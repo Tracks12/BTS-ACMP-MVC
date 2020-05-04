@@ -1,9 +1,12 @@
 /**
- * Auteur   : CARDINAL Florian
- * Date     : 02/05/2020 14:01
- * Page     : main.js
+ * Autor    : CARDINAL Florian
+ * Project  : Capteur ACMP
+ * Date     : 04/05/2020
  * Location : /scripts/
+ * Nom      : main.js
  */
+
+"use strict";
 
 // Connexion au service Here
 const platform = new H.service.Platform({
@@ -39,10 +42,12 @@ $(document).ready(() => {
 				.slideToggle();
 	});
 
-	$('nav ul li a').click(function() {
-		let href = $(this).attr('href').split('#')[1];
-		$('section').load(`/${href}`);
-	})
+	$('nav ul li a')
+		.click(function() {
+			let href = $(this).attr('href').split('#')[1];
+			$('section').load(`/${href}`);
+		})
+		.scrolly();
 
 	$('section').click(() => {
 		if($(window).width() < 720)

@@ -1,12 +1,19 @@
 /**
+ * Autor    : CARDINAL Florian
  * Project  : Capteur ACMP
  * Date     : 25/05/2020
- * Autor    : CARDINAL Florian
+ * Location : /scripts/
  * Nom      : map.js
- * Location : /assets/scripts/
  */
 
-function mapInit(data) {
+"use strict";
+
+/**
+ * Display a map
+ * @param {object} box html object to display
+ * @param {array} data array of json data captor
+ */
+function mapInit(box, data) {
  	let icon = {
 		broadcast: new H.map.Icon("/assets/img/broadcast.png", { size: { w: 30, h: 45 }}),
 		location: new H.map.Icon("/assets/img/location.png", { size: { w: 30, h: 45 }})
@@ -30,7 +37,7 @@ function mapInit(data) {
 
 	// Création de la map avec l'api et le sélecteur jQuery
 	let map = new H.Map(
-		$('#map')[0], // Sélecteur JQuery pour l'affichage
+		box[0], // Sélecteur JQuery pour l'affichage
 		defaultLayers.vector.normal.map, // Apparence
 		{ zoom: 13, center: pos.toulouse } // Position & Zoom
 	);

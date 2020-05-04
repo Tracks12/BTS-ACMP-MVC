@@ -4,5 +4,5 @@
 <script language="javascript" type="text/javascript">
 	var captors = <?php echo(json_encode($captors)); ?>;
 
-	mapInit(captors);
+	mapInit($('#map'), captors);
 </script>
