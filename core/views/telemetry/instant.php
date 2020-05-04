@@ -81,7 +81,7 @@
 		var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
 		  yAxis: {
 	      min: 0,
-	      max: 10000,
+	      max: 100000,
 	      title: {
           text: 'Speed'
 	      }
