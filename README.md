@@ -4,7 +4,7 @@
 
 BTS training project, a map displaying telemetry data from the LoraWan pollution sensor network provided by Tetaneutral.
 
-> This is a redesign of the angular-based interface sensor project.
+> This is a redesign of [BTS-ACMP-Captor-Interface](https://github.com/Tracks12/BTS-ACMP-Captor-Interface).
 
 ---
 
