@@ -5,10 +5,10 @@
 		<?php require_once("./core/views/head.html"); ?>
 	</head>
 	<body>
-		<!--<div id="splash">
-			<h1>acmp</h1>
-		</div>-->
-		<?php require_once('./core/views/nav.php'); ?>
+		<?php
+			require_once('./core/views/splash.html');
+			require_once('./core/views/nav.php');
+		?>
 		<section>
 		</section>
 	</body>
