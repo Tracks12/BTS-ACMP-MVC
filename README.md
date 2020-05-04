@@ -53,6 +53,7 @@ After cloning the repository you need to create the database connection file in 
 			return self::$bdd['db'];
 		}
 
+		// Data Base auth fields
 		private static $bdd = [
 			"db"   => NULL,
 			"host" => "...",
