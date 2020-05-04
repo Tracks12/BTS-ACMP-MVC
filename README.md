@@ -1,6 +1,6 @@
-## Pollution sensor mapping
+# Pollution sensor mapping
 
-### [ACMP Project](http://92.222.109.216/)
+## [ACMP Project](http://92.222.109.216/)
 
 BTS training project, a map displaying telemetry data from the LoraWan pollution sensor network provided by Tetaneutral.
 
@@ -8,41 +8,41 @@ BTS training project, a map displaying telemetry data from the LoraWan pollution
 
 ---
 
-### Dépendances
+## Dépendances
 
-#### Front (Styles & Scripts)
+### Front (Styles & Scripts)
 * [Here Map](https://developer.here.com/)
 * [HighCharts 8.0.4](https://www.highcharts.com/blog/download/?_ga=2.170300512.1736851386.1588551901-428133042.1582636352)
 * [JQuery 3.4.1](https://api.jquery.com/)
 * [Font Awesome 4.7.0](https://fontawesome.com/v4.7.0/)
 
-#### Fonts
+### Fonts
 * [Lato](http://www.latofonts.com/lato-free-fonts/)
 * [Monospace](https://fontmeme.com/polices/police-monospace/)
 * [ROCKET](http://www.fontriver.com/font/rocket_wildness/)
 
 ---
 
-### MVC Ressources
+## MVC Ressources
 
-#### Source files in `/core/`
+### Source files in `/core/`
 * controllers ressources: `/core/controllers/`
 * models ressources: `/core/models/`
 * views ressources: `/core/views/`
 
-#### Routing
+### Routing
 * HTTP Request: `/core/HTTPRoute.php`
 * XHR Request: `/core/XHRRoute.php`
 
-#### Modules Annexes
+### Modules Annexes
 * Data Base connexion: `/core/connect.php`
 * Injection Verification & Protection: `/core/services.php`
 
 ---
 
-### Views Ressources
+## Views Ressources
 
-#### Telemetry
+### Telemetry
 
 * real-time data: `/core/views/telemetry/instant.php`
 Retrieves the last data from a desired sensor and displays it at a gauge in js
@@ -51,18 +51,18 @@ Retrieves the last data from a desired sensor and displays it at a gauge in js
 Displays graphs of pollution sensor data (Ozones, CO2, Fine Particles)
 
 
-#### Map
+### Map
 
 * sensor map: `/core/views/map.php`
 Displays the pollution sensors on a Here map
 
 ---
 
-### Routing
+## Routing
 
 to add a new route you have to go to the `/core` directory, from there you will have access to the HTTP and XHR route.
 
-#### HTTP Route `/core/HTTPRoute.php`
+### HTTP Route `/core/HTTPRoute.php`
 
 A variable `$page` is used to choose the resource to display, by default, it has the value `index.php` to display the index
 
@@ -130,7 +130,7 @@ $(document).ready(() => {
 })
 ```
 
-#### XHR Route `/core/XHRRoute.php`
+### XHR Route `/core/XHRRoute.php`
 
 Same procedure as for HTTP, except that instead of putting resources, we call the controller directly.
 
@@ -149,14 +149,14 @@ switch(services::isInput($_SERVER['REQUEST_URI'])) {
 
 ---
 
-### Last Update
+## Last Update
 
-#### May 4, 2020
+### May 4, 2020
 * Update Map
 * Update Graph
 * Add New Models
 * Add New Controllers
 * Dynamic Nav Bar
 * Script fixed
-* Update documentation
+* Add Doc
 * MVD Design
