@@ -67,7 +67,7 @@ After cloning the repository you need to create the database connection file in 
 
 ---
 
-## Dépendances
+## Dependencies
 
 ### Front (Styles & Scripts)
 * [Here Map](https://developer.here.com/)
@@ -82,12 +82,12 @@ After cloning the repository you need to create the database connection file in 
 
 ---
 
-## MVC Ressources
+## MVC Resources
 
 ### Source files in `/core/`
-* controllers ressources: `/core/controllers/`
-* models ressources: `/core/models/`
-* views ressources: `/core/views/`
+* controllers resources: `/core/controllers/`
+* models resources: `/core/models/`
+* views resources: `/core/views/`
 
 ### Routing
 * HTTP Request: `/core/HTTPRoute.php`
@@ -99,7 +99,7 @@ After cloning the repository you need to create the database connection file in 
 
 ---
 
-## Views Ressources
+## Views Resources
 
 ### Telemetry
 
