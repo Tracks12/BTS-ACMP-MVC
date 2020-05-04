@@ -34,7 +34,7 @@
 
 		  series: [{
 	      name: 'Speed',
-	      data: [0],
+	      data: [<?php echo(ACMPModel::getLastValueFor('CO2')['value']); ?>],
 	      dataLabels: {
           format:
             '<div style="text-align:center">' +
