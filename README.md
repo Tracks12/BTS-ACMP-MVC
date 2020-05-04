@@ -124,7 +124,7 @@ to add a new route you have to go to the `/core` directory, from there you will 
 
 A variable `$page` is used to choose the resource to display, by default, it has the value `index.php` to display the index
 
-Add the redirection by putting the uri prefix in the `case ` /example':` box, then change the `$page' variable to display the desired resource (you can also do a redirection with a `header()`).
+Add the redirection by putting the uri prefix in the `case '/example':` box, then change the `$page` variable to display the desired resource (you can also do a redirection with a `header()`).
 
 Don't forget to put `http_response_code(200)` to confirm the request, otherwise there will be a 404 error instead.
 
