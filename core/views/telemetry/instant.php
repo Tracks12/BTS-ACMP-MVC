@@ -1,3 +1,7 @@
+<!--
+(c) 2019-2020 Flore Philippe
+ Solid Gauge
+ -->
 <!DOCTYPE html>
 <!-- INSTANT -->
 <aside id="instant">
