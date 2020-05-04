@@ -198,6 +198,45 @@ section aside {
 	font-size: 1.5em;
 }
 
+#instant .highcharts-figure .chart-container {
+	width: 300px;
+	height: 200px;
+	float: left;
+}
+
+#instant .highcharts-figure, .highcharts-data-table table {
+	width: 600px;
+	margin: 0 auto;
+}
+
+#instant .highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+#instant .highcharts-data-table caption {
+	padding: 1em 0;
+	font-size: 1.2em;
+	color: #555;
+}
+#instant .highcharts-data-table th {
+font-weight: 600;
+	padding: 0.5em;
+}
+#instant .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+	padding: 0.5em;
+}
+#instant .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+	background: #f8f8f8;
+}
+#instant .highcharts-data-table tr:hover {
+	background: #f1f7ff;
+}
+
 /**
 * Form Style
 */

@@ -64,6 +64,17 @@
 	}
 }
 
+@media (max-width: 600px) {
+	#instant .highcharts-figure, .highcharts-data-table table {
+		width: 100%;
+	}
+	#instant .highcharts-figure .chart-container {
+		width: 300px;
+		float: none;
+		margin: 0 auto;
+	}
+}
+
 /**
  * END
  */
