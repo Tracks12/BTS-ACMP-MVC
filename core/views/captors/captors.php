@@ -1,4 +1,4 @@
-<!-- TELEMETRY -->
+<!-- CAPTORS -->
 <aside id="telemetry">
 	<div class="global-menu">
 		<a class="item" href="#map">

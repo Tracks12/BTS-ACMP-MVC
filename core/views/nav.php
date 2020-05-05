@@ -7,10 +7,6 @@
 		<li class="title">
 			<a class="scrolly" href="#map">acmp</a>
 		</li>
-		<?php
-			if(isset($_SESSION['user']))
-				echo('<li class="button"><a class="scrolly" href="#captors">capteurs</a></li>');
-		?>
 		<li class="button">
 			<a class="scrolly" href="#telemetry">
 				<span class="ico fa fa-bar-chart"></span>télémetrie
@@ -28,17 +24,15 @@
 				</li>
 			</ul>
 		</li>
+		<li class="button" style="display: none;">
+			<a class="scrolly" href="#captors">capteurs</a>
+		</li>
 		<li class="button">
 			<a class="scrolly" href="#about"><span class="ico fa fa-info-circle"></span>à propos</a>
 		</li>
 		<li class="button">
-			<?php
-				if(isset($_SESSION['user']))
-					echo('<a href="#signout"><span class="ico fa fa-sign-out"></span>déconnexion</a>');
-
-				else
-					echo('<a href="#signin"><span class="ico fa fa-sign-in"></span>connexion</a>');
-			?>
+			<a href="#signout" style="display: none;"><span class="ico fa fa-sign-out"></span>déconnexion</a>
+			<a href="#signin"><span class="ico fa fa-sign-in"></span>connexion</a>
 		</li>
 	</ul>
 </nav>
