@@ -38,16 +38,7 @@
 		 */
 		public function getDataByCaptor(): array {
 			$bdd = bdd::connect();
-			$req = $bdd->query('
-				SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
-				FROM `data`
-				JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
-				JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
-				JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
-				WHERE 1
-				ORDER BY `measures`.idMeasure
-				DESC
-			');
+			$req = $bdd->query('CALL listDataByCaptor()');
 
 			return $req->fetchAll(PDO::FETCH_ASSOC);
 		}
@@ -59,18 +50,42 @@
 		 */
 		public function getDataByOnceCaptor(string $captor): array {
 			$bdd = bdd::connect();
-			$req = $bdd->query("
-				SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
-				FROM `data`
-				JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
-				JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
-				JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
-				WHERE `captors`.id = '$captor'
-				ORDER BY `measures`.idMeasure
-				DESC
-			");
+			$req = $bdd->query("CALL `listDataByOnceCaptor`('$captor')");
 
 			return $req->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		/**
+		 * get last value for a Ozone measure
+		 * @return array last ozone value
+		 */
+		public function getLastValueForOzone(): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query("CALL ` GetLastOzoneData`()");
+
+			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
+		}
+
+		/**
+		 * get last value for a Carbon measure
+		 * @return array last carbon value
+		 */
+		public function getLastValueForCarbon(): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query("CALL ` GetLastCarbonData`()");
+
+			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
+		}
+
+		/**
+		 * get last value for a Particules measure
+		 * @return array last particules value
+		 */
+		public function getLastValueForParticules(): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query("CALL ` GetLastParticulesData`()");
+
+			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
 		}
 
 		/**
@@ -80,15 +95,7 @@
 		 */
 		public function getLastValueFor(string $measureName): array {
 			$bdd = bdd::connect();
-			$req = $bdd->query("
-				SELECT `Name`, `value`
-				FROM `measures`
-				JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-				WHERE `measuresName`.Name = '$measureName'
-				ORDER BY `measures`.idMeasure
-				DESC
-				LIMIT 1
-			");
+			$req = $bdd->query("CALL `GetLastData`('$measureName')");
 
 			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
 		}

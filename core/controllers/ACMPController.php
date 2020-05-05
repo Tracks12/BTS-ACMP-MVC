@@ -11,7 +11,7 @@
 		 * @param array $data array of post request
 		 * @return array json result of request
 		 */
-		public function insertCaptor($data): array {
+		public function insertCaptor(array $data): array {
 			$post = [
 				"value"		=> [
 

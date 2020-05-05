@@ -12,50 +12,6 @@ CREATE DATABASE IF NOT EXISTS `capteur`;
 USE `capteur`;
 
 
--- Procédures
-
-DELIMITER $$
-
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllCarbon` ()  NO SQL
-SELECT `Name`, `value`, `time`, `rssi`, `lat`, `lon`
-FROM `data`
-JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
-JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-WHERE `measures`.idName = 2
-ORDER BY `measures`.idMeasure
-DESC$$
-
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllOzonne` ()  NO SQL
-SELECT `Name`, `value`, `time`, `rssi`, `lat`, `lon`
-FROM `data`
-JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
-JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-WHERE `measures`.idName = 1
-ORDER BY `measures`.idMeasure
-DESC$$
-
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllParticules` ()  NO SQL
-SELECT `Name`, `value`, `time`, `rssi`, `lat`, `lon`
-FROM `data`
-JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
-JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-WHERE `measures`.idName = 3
-ORDER BY `measures`.idMeasure
-DESC$$
-
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByCaptor` ()  NO SQL
-SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
-FROM `data`
-JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
-JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
-JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
-WHERE 1
-ORDER BY `measures`.idMeasure
-DESC$$
-
-DELIMITER ;
-
-
 -- Structure des tables
 
 CREATE TABLE `captors` (
@@ -65,9 +21,9 @@ CREATE TABLE `captors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `captors` (`idCaptor`, `id`, `registerTime`) VALUES
-(1, '80e1675869172200', '2020-03-30 13:46:32'),
-(2, '8670b5b28f9d30b1', '2020-03-30 13:47:53'),
-(3, 'c3f29743a21e6429', '2020-03-30 13:47:59');
+	(1, '80e1675869172200', '2020-03-30 13:46:32'),
+	(2, '8670b5b28f9d30b1', '2020-03-30 13:47:53'),
+	(3, 'c3f29743a21e6429', '2020-03-30 13:47:59');
 
 -- --------------------------------------------------------
 
@@ -82,15 +38,15 @@ CREATE TABLE `data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `data` (`idData`, `idCaptor`, `time`, `rssi`, `lat`, `lon`, `idMeasure`) VALUES
-(1, 1, '2020-04-01 13:39:26', '-102', 43.5885, 1.42365, 1),
-(2, 1, '2020-04-01 15:38:53', '-101', 43.5885, 1.42365, 2),
-(3, 1, '2020-04-02 16:39:10', '-96', 43.5885, 1.42365, 3),
-(4, 1, '2020-04-02 18:39:17', '-98', 43.5885, 1.42365, 4),
-(5, 2, '2020-04-05 18:40:48', '-88', 43.6036, 1.40698, 5),
-(6, 2, '2020-04-05 19:00:47', '-85', 43.6036, 1.40698, 6),
-(7, 3, '2020-04-05 20:08:46', '-88', 43.5931, 1.45144, 7),
-(8, 3, '2020-04-05 20:45:49', '-88', 43.5931, 1.45144, 8),
-(9, 3, '2020-04-05 21:08:53', '-88', 43.5931, 1.45144, 9);
+	(1, 1, '2020-04-01 13:39:26', '-102', 43.5885, 1.42365, 1),
+	(2, 1, '2020-04-01 15:38:53', '-101', 43.5885, 1.42365, 2),
+	(3, 1, '2020-04-02 16:39:10', '-96', 43.5885, 1.42365, 3),
+	(4, 1, '2020-04-02 18:39:17', '-98', 43.5885, 1.42365, 4),
+	(5, 2, '2020-04-05 18:40:48', '-88', 43.6036, 1.40698, 5),
+	(6, 2, '2020-04-05 19:00:47', '-85', 43.6036, 1.40698, 6),
+	(7, 3, '2020-04-05 20:08:46', '-88', 43.5931, 1.45144, 7),
+	(8, 3, '2020-04-05 20:45:49', '-88', 43.5931, 1.45144, 8),
+	(9, 3, '2020-04-05 21:08:53', '-88', 43.5931, 1.45144, 9);
 
 -- --------------------------------------------------------
 
@@ -101,15 +57,15 @@ CREATE TABLE `measures` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `measures` (`idMeasure`, `idName`, `value`) VALUES
-(1, 2, 41568),
-(2, 2, 41500),
-(3, 2, 41530),
-(4, 2, 41744),
-(5, 1, 68),
-(6, 1, 80),
-(7, 3, 62),
-(8, 3, 56),
-(9, 3, 57);
+	(1, 2, 41568),
+	(2, 2, 41500),
+	(3, 2, 41530),
+	(4, 2, 41744),
+	(5, 1, 68),
+	(6, 1, 80),
+	(7, 3, 62),
+	(8, 3, 56),
+	(9, 3, 57);
 
 -- --------------------------------------------------------
 
@@ -119,9 +75,9 @@ CREATE TABLE `measuresName` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `measuresName` (`idName`, `Name`) VALUES
-(2, 'CO2'),
-(1, 'Ozonne'),
-(3, 'Particules Fines');
+	(2, 'CO2'),
+	(1, 'Ozonne'),
+	(3, 'Particules Fines');
 
 -- --------------------------------------------------------
 
@@ -186,6 +142,99 @@ ALTER TABLE `data`
 
 ALTER TABLE `measures`
   ADD CONSTRAINT `FK_NAME` FOREIGN KEY (`idName`) REFERENCES `measuresName` (`idName`);
+
+
+-- Procédures
+
+DELIMITER $$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastCarbonData` ()  NO SQL
+SELECT `Name`, `value`
+FROM `measures`
+JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+WHERE `measuresName`.idName = 2
+ORDER BY `measures`.idMeasure
+DESC
+LIMIT 1$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastData` (IN `measureName` VARCHAR(64) CHARSET utf8)  NO SQL
+SELECT `Name`, `value`
+FROM `measures`
+JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+WHERE `measuresName`.Name = measureName
+ORDER BY `measures`.idMeasure
+DESC
+LIMIT 1$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastOzoneData` ()  NO SQL
+SELECT `Name`, `value`
+FROM `measures`
+JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+WHERE `measuresName`.idName = 1
+ORDER BY `measures`.idMeasure
+DESC
+LIMIT 1$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastParticulesData` ()  NO SQL
+SELECT `Name`, `value`
+FROM `measures`
+JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+WHERE `measuresName`.idName = 3
+ORDER BY `measures`.idMeasure
+DESC
+LIMIT 1$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllCarbon` ()  NO SQL
+SELECT `id`, `Name`, `value`, `time`, `rssi`, `lat`, `lon`
+FROM `data`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+WHERE `measures`.idName = 2
+ORDER BY `measures`.idMeasure
+DESC$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllOzonne` ()  NO SQL
+SELECT `id`, `Name`, `value`, `time`, `rssi`, `lat`, `lon`
+FROM `data`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+WHERE `measures`.idName = 1
+ORDER BY `measures`.idMeasure
+DESC$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllParticules` ()  NO SQL
+SELECT `id`, `Name`, `value`, `time`, `rssi`, `lat`, `lon`
+FROM `data`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+WHERE `measures`.idName = 3
+ORDER BY `measures`.idMeasure
+DESC$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByCaptor` ()  NO SQL
+SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
+FROM `data`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
+WHERE 1
+ORDER BY `measures`.idMeasure
+DESC$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByOnceCaptor` (IN `captor` VARCHAR(128) CHARSET utf8)  NO SQL
+SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
+FROM `data`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
+WHERE `captors`.id = captor
+ORDER BY `measures`.idMeasure
+DESC$$
+
+DELIMITER ;
 
 
 -- END
