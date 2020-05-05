@@ -27,21 +27,18 @@
 	<figure class="highcharts-figure">
 		<div id="ozonne" class="chart-container"></div>
 		<p class="highcharts-description"> Capteur d'ozone </p>
-			Chart demonstrating solid gauges with dynamic data. Two separate charts
-			are used, and each is updated dynamically every few seconds. Solid
-			gauges are popular charts for dashboards, as they visualize a number
-			in a range at a glance. As demonstrated by these charts, the color of
-			the gauge can change depending on the value of the data shown.
+		<h5> Explication du graphique d'ozonne : </h5>
+		<h6>  Graphique Highcharts montrant une jauge solide avec des données dynamiques. Une carte distincte est utilisée et elle est mise à jour dynamiquement toutes les quelques secondes. Comme le montre ce graphique, la couleur de la jauge peut changer en fonction de la valeur des données affichées.
+			<br>
+
 	</figure>
 	<br />
 	<figure class="highcharts-figure">
 		<div id="particules" class="chart-container"></div>
 		<p class="highcharts-description"> Capteur de particules fines </p>
-			Chart demonstrating solid gauges with dynamic data. Two separate charts
-			are used, and each is updated dynamically every few seconds. Solid
-			gauges are popular charts for dashboards, as they visualize a number
-			in a range at a glance. As demonstrated by these charts, the color of
-			the gauge can change depending on the value of the data shown.
+		<h5> Explication du graphique particules fines : </h5>
+		<h6>  Graphique Highcharts montrant une jauge solide avec des données dynamiques. Une carte distincte est utilisée et elle est mise à jour dynamiquement toutes les quelques secondes. Comme le montre ce graphique, la couleur de la jauge peut changer en fonction de la valeur des données affichées.
+			<br>
 	</figure>
 
 
