@@ -202,10 +202,16 @@ section aside {
  * Gauge
  */
 #instant .highcharts-figure .chart-container {
-	width: 300px;
-	height: 200px;
-	float: left;
+	width: 400px;
+	height: 300px;
+	float: top;
+	border: solid red;
+	max-width: 80ex;
+	margin: 0;
+	position: relative;
+	top: 100px; left: 120px;
 }
+
 
 #instant .highcharts-figure, .highcharts-data-table table {
 	width: 600px;
@@ -213,19 +219,19 @@ section aside {
 }
 
 #instant .highcharts-data-table table {
-	font-family: Verdana, sans-serif;
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #6ff9cd;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
 }
 
 #instant .highcharts-data-table caption {
-	padding: 1em 0;
-	font-size: 1.2em;
-	color: #555;
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
 }
 
 #instant .highcharts-data-table th {
@@ -243,6 +249,41 @@ font-weight: 600;
 
 #instant .highcharts-data-table tr:hover {
 	background: #f1f7ff;
+}
+
+#instant .highcharts-description {
+	/*background-color: #e00f04;*/
+	/* margin: 100px 850px 20px; */
+	position: absolute;
+  top: 5%; left: 48%;
+ 	width: 500px;
+	max-width: 20ex;
+}
+
+#instant #container {
+	width:990px;
+/*	background-color: #6ff9cd; */
+	border: solid #6ff9cd;
+	max-width: 90ex;
+	margin: 150px auto 10px;
+
+}
+
+#instant #footer{
+	border-top: 1px black solid;
+	border-top-style: solid;
+	position: absolute; bottom: 0; left: 0; right: 0
+	backgroundColor: #f1f7ff;
+	background-color: #6ff9cd;
+	border: solid teal;
+	max-width: 80ex;
+}
+
+#instant #image {
+	position: absolute;
+	top: 475px; left: 1260px;
+	width: 50px;
+	height: 50px;
 }
 
 /**
