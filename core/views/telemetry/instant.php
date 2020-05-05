@@ -99,72 +99,72 @@
 
 		// Ozone
 		var ozone = Highcharts.chart('ozonne', Highcharts.merge(gaugeOptions, {
-		  yAxis: {
-	      min: 0,
-	      max: 200,
-	      title: {
-          text: 'Ozone'
-	      }
-		  },
+			yAxis: {
+				min: 0,
+				max: 200,
+				title: {
+					text: 'Ozone'
+				}
+			},
 
-		  credits: {
-	      enabled: false
-		  },
+			credits: {
+				enabled: false
+			},
 
-		  series: [{
-	      name: 'Ozone',
-	      data: [<?php echo(ACMPModel::getLastValueFor('Ozonne')['value']); ?>],
-	      dataLabels: {
-          format:
-            '<div style="text-align:center">' +
-            '<span style="font-size:25px">{y}</span><br/>' +
-            '<span style="font-size:12px;opacity:0.4">dobson</span>' +
-            '</div>'
-	      },
-	      tooltip: {
-          valueSuffix: ' dobson'
-	      }
-		  }]
+			series: [{
+				name: 'Ozone',
+				data: [<?php echo(ACMPModel::getLastValueFor('Ozonne')['value']); ?>],
+				dataLabels: {
+					format:
+						'<div style="text-align:center">' +
+						'<span style="font-size:25px">{y}</span><br/>' +
+						'<span style="font-size:12px;opacity:0.4">dobson</span>' +
+						'</div>'
+				},
+				tooltip: {
+					valueSuffix: ' dobson'
+				}
+			}]
 		}));
 
 		// Particules Fines
 		var particules = Highcharts.chart('particules', Highcharts.merge(gaugeOptions, {
-		  yAxis: {
-	      min: 0,
-	      max: 200,
-	      title: {
-          text: 'Particules Fines'
-	      }
-		  },
+			yAxis: {
+				min: 0,
+				max: 200,
+				title: {
+					text: 'Particules Fines'
+				}
+			},
 
-		  credits: {
-	      enabled: false
-		  },
+			credits: {
+				enabled: false
+			},
 
-		  series: [{
-	      name: 'Particules Fines',
-	      data: [<?php echo(ACMPModel::getLastValueFor('Particules Fines')['value']); ?>],
-	      dataLabels: {
-          format:
-            '<div style="text-align:center">' +
-            '<span style="font-size:25px">{y}</span><br/>' +
-            '<span style="font-size:12px;opacity:0.4">ppm</span>' +
-            '</div>'
-	      },
-	      tooltip: {
-          valueSuffix: ' ppm'
-	      }
-		  }]
+			series: [{
+				name: 'Particules Fines',
+				data: [<?php echo(ACMPModel::getLastValueFor('Particules Fines')['value']); ?>],
+				dataLabels: {
+					format:
+						'<div style="text-align:center">' +
+						'<span style="font-size:25px">{y}</span><br/>' +
+						'<span style="font-size:12px;opacity:0.4">ppm</span>' +
+						'</div>'
+				},
+				tooltip: {
+					valueSuffix: ' ppm'
+				}
+			}]
 		}));
 
 		if(gaugeInterval)
 			clearInterval(gaugeInterval);
 
 		var gaugeInterval = setInterval(() => {
-		  // CO2 Update
-		  var point;
+			// CO2 Update
+			var point;
 
-		  if(carbon)
+			if(carbon)
 				xhr.getLastValueFor(carbon.series[0].points[0], 'CO2');
 
 			if(ozone)
