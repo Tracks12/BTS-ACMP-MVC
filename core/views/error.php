@@ -26,8 +26,7 @@
 
 					if(!count) {
 						clearInterval(timer);
-						//window.location.href = $('#redirect').text();
-						window.location.href = "/x";
+						window.location.href = $('#redirect').text();
 					}
 				}, 1000);
 			});
