@@ -9,9 +9,9 @@
 		/**
 		 * contact form controller
 		 * @param array $data array of post request
-		 * @return string json result of request
+		 * @return array json result of request
 		 */
-		public function insertCaptor($data) {
+		public function insertCaptor($data): array {
 			$post = [
 				"value"		=> [
 
