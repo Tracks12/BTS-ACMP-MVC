@@ -60,7 +60,7 @@ After cloning the repository you need to create the database connection file in 
 			"name" => "...",
 			"char" => "utf8",
 			"user" => "...",
-			"pass" => "...-"
+			"pass" => "..."
 		];
 	}
 ```
