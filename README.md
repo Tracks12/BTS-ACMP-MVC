@@ -220,6 +220,28 @@ switch(http_response_code()) {
 }
 ```
 
+And here is the XHR request to place on the front side in `/scripts/xhr.js` to retrieve the information to exploit them
+
+```js
+class xhr {
+	/**
+	 * ping the back side
+	 */
+	static ping() {
+		$.ajax({
+			type: 'post',
+			url: '/?ping',
+			dataType: 'json',
+			success: (result) => {
+				console.log(result.response);
+			}
+		});
+	}
+}
+```
+
+And call the request like this: `xhr.ping();`.
+
 ---
 
 ## Last Update
