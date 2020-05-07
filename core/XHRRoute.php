@@ -15,6 +15,10 @@
 			$return = [ "response" => $arr ];
 			break;
 
+		case '/?ping':
+			$return = [ "response" => 'ping' ];
+			break;
+
 		default:
 			http_response_code(404);
 			$return = [ "code" => 404, "error" => "NOT FOUND !" ];
