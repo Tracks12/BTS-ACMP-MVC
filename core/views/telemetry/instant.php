@@ -101,7 +101,7 @@
 					format:
 						'<div style="text-align:center">' +
 						'<span style="font-size:25px">{y}</span><br/>' +
-						'<span style="font-size:12px;opacity:0.4"><?php echo($particules['name']); ?></span>' +
+						'<span style="font-size:12px;opacity:0.4"><?php echo($particules['unit']); ?></span>' +
 						'</div>'
 				},
 				tooltip: {
