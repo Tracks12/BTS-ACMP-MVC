@@ -7,6 +7,8 @@
 
 :root {
 	--contrast-color: rgb(235, 235, 235);
+	--submit-color: rgb(0, 170, 170);
+	--submit-color-hover: rgb(0, 190, 190);
 }
 
 * {
@@ -144,15 +146,6 @@ section aside {
 }
 
 /**
- * Here Map
- */
-#map {
-	background: rgb(150, 150, 150);
-	height: 100%;
-	width: 100%;
-}
-
-/**
  * Global Menu
  */
 .global-menu {
@@ -164,7 +157,7 @@ section aside {
 }
 
 .global-menu .item {
-	background: rgb(0, 170, 170);
+	background: var(--submit-color);
 	border-radius: 15px;
 	box-sizing: border-box;
 	color: var(--contrast-color);
@@ -176,7 +169,7 @@ section aside {
 	width: 10em;
 }
 .global-menu .item:hover {
-	background: rgb(0, 190, 190);
+	background: var(--submit-color-hover);
 	box-shadow: 0 0 15px rgba(0, 0, 0, .3);
 	margin: .5em 1.75em;
 	padding: 1.75em 0;
@@ -196,6 +189,38 @@ section aside {
 }
 .global-menu .item .label {
 	font-size: 1.5em;
+}
+
+/**
+ * Here Map
+ */
+#map {
+	background: rgb(150, 150, 150);
+	height: 100%;
+	width: 100%;
+}
+
+#map .H_ib_content > .mapInfoBox {
+	margin: -16px -28px -20px -16px;
+	padding: 2em 1em 1em 1em;
+	width: 16em;
+}
+
+#map .H_ib_content > .mapInfoBox .button {
+	background: var(--submit-color);
+	border-radius: 6px;
+	color: var(--contrast-color);
+	cursor: pointer;
+	display: block;
+	font-size: 1.5em;
+	margin-top: .5em;
+	padding: .5em;
+	text-align: center;
+	text-decoration: none;
+	transition: .2s all;
+}
+#map .H_ib_content > .mapInfoBox .button:hover {
+	background: var(--submit-color-hover);
 }
 
 /**

@@ -8,8 +8,13 @@
 
 "use strict";
 
+/**
+ * Redirect URI from Map
+ * @param {string} href URI Directory
+ */
 function mapLink(href) {
-	$("section").load(`/${href.split("#")[1]}`);
+	document.location.hash = `telemetry-${href}`;
+	$("section").load(`/${href}`);
 }
 
 /**
@@ -65,7 +70,7 @@ function mapInit(box, data) {
 	map.addObject(group);
 
 	group.addEventListener('tap', (evt) => {
-		var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
+		let bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
 			content: evt.target.getData()
 		});
 
@@ -73,26 +78,29 @@ function mapInit(box, data) {
 	}, false);
 
 	let content = [
-		'<div style="width: 15em">',
+		'<div class="mapInfoBox">',
 			'<a href="https://deodat.mon-ent-occitanie.fr/" target="_blank">Lycée Déodat de Séverac</a>',
 		'</div>'
 	].join('');
 	addMarker(group, pos.deodat, icon.broadcast, content);
 
 	data.forEach((item) => {
+		let time = new Date(item.time);
+		time = `${time.toLocaleDateString()} à ${time.toLocaleTimeString()}`;
+
 		let coord = {
 			lat: item.lat,
 			lng: item.lon
 		};
 
 		let content = [
-			'<div style="width: 15em">',
+			'<div class="mapInfoBox">',
 				`<p>ID Capteur: ${item.id}</p>`,
 				`<p>Puissance: ${item.rssi} dBm</p>`,
 				`<p>Grandeur: ${item.name}</p>`,
 				`<p>Valeur: ${item.value} ${item.unit}</p>`,
-				`<p>Prise le: ${item.time}</p>`,
-				`<p><a onclick="javascript:mapLink('#telemetry-${item.id}');" href="#telemetry-${item.id}">Télémétrie</a></p>`,
+				`<p>Prise le: ${time}</p>`,
+				`<p><a class="button" onclick="javascript:mapLink('${item.id}');">Télémétrie</a></p>`,
 			'</div>'
 		].join('');
 

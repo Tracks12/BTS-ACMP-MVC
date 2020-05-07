@@ -122,6 +122,6 @@
 
 			if(particules)
 				xhr.getLastValueFor(particules.series[0].points[0], 'Particules Fines');
-		}, 1000);
+		}, 2000);
 	</script>
 </aside>

@@ -103,6 +103,9 @@ $(document).ready(() => {
 
 	$('nav ul li a')
 		.click(function() {
+			if(!(typeof gaugeInterval === 'undefined'))
+				clearInterval(gaugeInterval);
+
 			let href = $(this).attr('href').split('#')[1];
 			$('section').load(`/${href}`);
 		})
