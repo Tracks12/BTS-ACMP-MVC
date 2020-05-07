@@ -15,66 +15,23 @@
 	</article>
 	<br />
 	<?php
-		// Connexion à la base
-		try {
-			$bdd = new PDO( // PDO (Programmation Data Object)
-				'mysql:host=localhost; dbname=capteur; charset=utf8',
-				'acmp',
-				'projet2020-'
-			);
-		}
-
-		// Affichage de l'erreur de connexion
-		catch(Exception $e) {
-			die("[Err]:[{$e->getmessage()}]");
-		}
-
 		//Lancement requete
-		$reponse = $bdd->query('
-			SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
-			FROM `data`
-			JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
-			JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
-			JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
-			WHERE `measuresName`.`idName` = 3
-			ORDER BY `measures`.idMeasure
-			ASC
-			LIMIT 4000
-		');
+		$data = ACMPModel::getDataByOnceCaptor('3100000000000003');
 
 		//Traitement du resultat
-		$listeTable = [];
 		$listeChart = [];
 
-		foreach($reponse->fetchAll(PDO::FETCH_ASSOC) as $item) { // Fetching de la requête
-			// strtotime = conversion data vers timestamp
-			$date = strtotime($item['time']) * 1000; // date MySQL * 1000 pour résultat en ms
-			$valeurs = $item['value'];               //données des capteurs
+		foreach($data as $item) { // Fetching de la requête
+			// strtotime = conversion datetime vers timestamp
+			// intval = conversion string to integer
+			$name = $item['name'];                   // Nom de la grandeur
+			$unit = $item['unit'];                   // Unité de mesure
 
-			array_push($listeTable, [$date, $valeurs]);   //format data pour le tableau
-			array_push($listeChart, "[$date, $valeurs]"); //format data pour highchart [x,y],[x,y]...
+			array_push($listeChart, [          //format data pour highchart [x,y],[x,y]...
+				strtotime($item['time']) * 1000, // date MySQL * 1000 pour résultat en ms
+				intval($item['value'])           // Données du capteurs
+			]);
 		}
-
-		//Termine le traitement de la requête
-		$reponse->closeCursor();
-
-		echo("<table>");
-		echo("<tr>
-			<th>timestamp</th>
-			<th>valeur (ppm)</th>
-		</tr>");
-
-		// Affiche les données
-		foreach($listeTable as $row) { // On sort une ligne
-			echo("<tr>");
-
-			foreach($row as $col) // on sort une colonne
-				echo("<td>$col</td>");
-
-			echo("</tr>");
-		}
-
-		echo("</table>");
 	?>
 
 	<!-- balise pour l'affichage du graph -->
@@ -90,7 +47,7 @@
 				},
 
 				title: {
-					text: 'Particules Fines',
+					text: '<?php echo($name); ?>',
 					style:{
 						color: '#4572A7',
 					},
@@ -112,7 +69,7 @@
 
 				yAxis: [{
 					labels: {
-						format: '{value} ppm',
+						format: '{value} <?php echo($unit); ?>',
 						style: {
 							color: '#C03000',
 						},
@@ -131,7 +88,7 @@
 					borderRadius: 6,
 					borderWidth: 3,
 					xDateFormat: '%A %e %b  %H:%M:%S',
-					valueSuffix: ' ppm',
+					valueSuffix: ' <?php echo($unit); ?>',
 				 },
 
 				plotOptions: {
@@ -143,10 +100,10 @@
 				},
 
 				series: [{
-					name: 'Particules Fines',
+					name: '<?php echo($name); ?> (<?php echo($unit); ?>)',
 					color: 'red',
 					zIndex: 1,
-					data: [<?php echo(join(',', $listeChart)); ?>] // c'est ici qu'on insert les data
+					data: <?php echo(json_encode($listeChart)); ?> // c'est ici qu'on insert les data
 				}]
 			});
 		});

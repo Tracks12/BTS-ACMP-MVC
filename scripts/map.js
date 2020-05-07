@@ -8,18 +8,34 @@
 
 "use strict";
 
+function mapLink(href) {
+	$("section").load(`/${href.split("#")[1]}`);
+}
+
+/**
+ * Add a Dynamic Marker on Map
+ * @param {object} group js object of Group Map
+ * @param {object} coord position to show Info Bubble
+ * @param {object} icon marker design
+ * @param {string} content html content of Info Bubble
+ */
+function addMarker(group, coord, icon, content) {
+	let marker = new H.map.Marker(coord, { icon: icon });
+	marker.setData(content);
+	group.addObject(marker);
+}
+
 /**
  * Display a map
  * @param {object} box html object to display
  * @param {array} data array of json data captor
  */
 function mapInit(box, data) {
- 	let icon = {
+	let icon = {
 		broadcast: new H.map.Icon("/assets/img/broadcast.png", { size: { w: 30, h: 45 }}),
 		location: new H.map.Icon("/assets/img/location.png", { size: { w: 30, h: 45 }})
 	};
 
-	// Création des constante pour l'apparence et les coordonnées
 	let defaultLayers = platform.createDefaultLayers();
 	let pos = {
 		toulouse: { // Coordonnée de la ville
@@ -32,37 +48,56 @@ function mapInit(box, data) {
 		}
 	};
 
-	// Affichage des coordonnées dans la console debug
-	console.table(pos);
-
-	// Création de la map avec l'api et le sélecteur jQuery
 	let map = new H.Map(
-		box[0], // Sélecteur JQuery pour l'affichage
-		defaultLayers.vector.normal.map, // Apparence
-		{ zoom: 13, center: pos.toulouse } // Position & Zoom
+		box[0],
+		defaultLayers.vector.normal.map,
+		{
+			zoom: 13,
+			center: pos.toulouse
+		}
 	);
 
-	// Création de l'interface utilisateur de la map
+	let group = new H.map.Group();
 	let ui = H.ui.UI.createDefault(map, defaultLayers);
-
-	// Affichage des événement de la map (traffic, travaux, etc...)
 	let mapEvents = new H.mapevents.MapEvents(map);
-
-	// Activation du comportement de la map (déplacement, zoom, etc...)
 	let behavior = new H.mapevents.Behavior(mapEvents);
 
-	// Placement du marqueur sur déodat
-	let posMarker = new H.map.Marker(pos.deodat, { icon: icon.broadcast });
-	map.addObject(posMarker);
+	map.addObject(group);
+
+	group.addEventListener('tap', (evt) => {
+		var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
+			content: evt.target.getData()
+		});
+
+		ui.addBubble(bubble);
+	}, false);
+
+	let content = [
+		'<div style="width: 15em">',
+			'<a href="https://deodat.mon-ent-occitanie.fr/" target="_blank">Lycée Déodat de Séverac</a>',
+		'</div>'
+	].join('');
+	addMarker(group, pos.deodat, icon.broadcast, content);
 
 	data.forEach((item) => {
-		let posMarker = new H.map.Marker({
+		let coord = {
 			lat: item.lat,
 			lng: item.lon
-		}, { icon: icon.location });
+		};
 
-		map.addObject(posMarker);
-	})
+		let content = [
+			'<div style="width: 15em">',
+				`<p>ID Capteur: ${item.id}</p>`,
+				`<p>Puissance: ${item.rssi} dBm</p>`,
+				`<p>Grandeur: ${item.name}</p>`,
+				`<p>Valeur: ${item.value} ${item.unit}</p>`,
+				`<p>Prise le: ${item.time}</p>`,
+				`<p><a onclick="javascript:mapLink('#telemetry-${item.id}');" href="#telemetry-${item.id}">Télémétrie</a></p>`,
+			'</div>'
+		].join('');
+
+		addMarker(group, coord, icon.location, content);
+	});
 }
 
 /**

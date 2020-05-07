@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<?php
-			require_once('./core/views/splash.html');
+			//require_once('./core/views/splash.html');
 			require_once('./core/views/nav.html');
 		?>
 		<section>

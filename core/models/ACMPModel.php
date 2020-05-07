@@ -38,7 +38,18 @@
 		 */
 		public function getDataByCaptor(): array {
 			$bdd = bdd::connect();
-			$req = $bdd->query('CALL listDataByCaptor()');
+			$req = $bdd->query('CALL `listDataByCaptor`()');
+
+			return $req->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		/**
+		 * get return of last datas by captors
+		 * @return array datas by captors
+		 */
+		public function getLastDataByCaptor(): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query('CALL `listLastDataByCaptor`()');
 
 			return $req->fetchAll(PDO::FETCH_ASSOC);
 		}
@@ -61,7 +72,7 @@
 		 */
 		public function getLastValueForOzone(): array {
 			$bdd = bdd::connect();
-			$req = $bdd->query("CALL ` GetLastOzoneData`()");
+			$req = $bdd->query("CALL `GetLastOzoneData`()");
 
 			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
 		}
@@ -72,7 +83,7 @@
 		 */
 		public function getLastValueForCarbon(): array {
 			$bdd = bdd::connect();
-			$req = $bdd->query("CALL ` GetLastCarbonData`()");
+			$req = $bdd->query("CALL `GetLastCarbonData`()");
 
 			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
 		}
@@ -83,7 +94,7 @@
 		 */
 		public function getLastValueForParticules(): array {
 			$bdd = bdd::connect();
-			$req = $bdd->query("CALL ` GetLastParticulesData`()");
+			$req = $bdd->query("CALL `GetLastParticulesData`()");
 
 			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
 		}

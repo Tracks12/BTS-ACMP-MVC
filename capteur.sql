@@ -15,9 +15,9 @@ USE `capteur`;
 -- Structure des tables
 
 CREATE TABLE `captors` (
-  `idCaptor` int(11) NOT NULL COMMENT '[int(11)]',
-  `id` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(128)]',
-  `registerTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '[timestamp]'
+	`idCaptor` int(11) NOT NULL COMMENT '[int(11)]',
+	`id` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(128)]',
+	`registerTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '[timestamp]'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `captors` (`idCaptor`, `id`, `registerTime`) VALUES
@@ -28,13 +28,13 @@ INSERT INTO `captors` (`idCaptor`, `id`, `registerTime`) VALUES
 -- --------------------------------------------------------
 
 CREATE TABLE `data` (
-  `idData` int(11) NOT NULL COMMENT '[int(11)]',
-  `idCaptor` int(11) NOT NULL COMMENT '[int(11)]',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `rssi` decimal(11,0) NOT NULL COMMENT '[dec(11,0)]',
-  `lat` float NOT NULL,
-  `lon` float NOT NULL,
-  `idMeasure` int(11) NOT NULL COMMENT '[int(11)]'
+	`idData` int(11) NOT NULL COMMENT '[int(11)]',
+	`idCaptor` int(11) NOT NULL COMMENT '[int(11)]',
+	`time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`rssi` decimal(11,0) NOT NULL COMMENT '[dec(11,0)]',
+	`lat` float NOT NULL,
+	`lon` float NOT NULL,
+	`idMeasure` int(11) NOT NULL COMMENT '[int(11)]'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `data` (`idData`, `idCaptor`, `time`, `rssi`, `lat`, `lon`, `idMeasure`) VALUES
@@ -51,9 +51,9 @@ INSERT INTO `data` (`idData`, `idCaptor`, `time`, `rssi`, `lat`, `lon`, `idMeasu
 -- --------------------------------------------------------
 
 CREATE TABLE `measures` (
-  `idMeasure` int(11) NOT NULL COMMENT '[int(11)]',
-  `idName` int(11) NOT NULL COMMENT '[int(11)]',
-  `value` int(11) NOT NULL COMMENT '[int(11)]'
+	`idMeasure` int(11) NOT NULL COMMENT '[int(11)]',
+	`idName` int(11) NOT NULL COMMENT '[int(11)]',
+	`value` int(11) NOT NULL COMMENT '[int(11)]'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `measures` (`idMeasure`, `idName`, `value`) VALUES
@@ -70,78 +70,79 @@ INSERT INTO `measures` (`idMeasure`, `idName`, `value`) VALUES
 -- --------------------------------------------------------
 
 CREATE TABLE `measuresName` (
-  `idName` int(11) NOT NULL COMMENT '[int(11)]',
-  `Name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(64)]'
+	`idName` int(11) NOT NULL COMMENT '[int(11)]',
+	`Name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(64)]',
+	`unit` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(16)]'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `measuresName` (`idName`, `Name`) VALUES
-	(2, 'CO2'),
-	(1, 'Ozonne'),
-	(3, 'Particules Fines');
+INSERT INTO `measuresName` (`idName`, `name`, `unit`) VALUES
+	(1, 'Ozone', 'dobson'),
+	(2, 'CO2', 'ppm'),
+	(3, 'Particules Fines', 'ppm');
 
 -- --------------------------------------------------------
 
 CREATE TABLE `users` (
-  `idUser` int(11) NOT NULL,
-  `nichandle` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastConnect` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `lastAddr` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isAdmin` tinyint(1) NOT NULL DEFAULT '0'
+	`idUser` int(11) NOT NULL,
+	`nichandle` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+	`password` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+	`lastConnect` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`lastAddr` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+	`isAdmin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 -- Index des tables exportées
 
 ALTER TABLE `captors`
-  ADD PRIMARY KEY (`idCaptor`),
-  ADD UNIQUE KEY `id` (`id`);
+	ADD PRIMARY KEY (`idCaptor`),
+	ADD UNIQUE KEY `id` (`id`);
 
 ALTER TABLE `data`
-  ADD PRIMARY KEY (`idData`),
-  ADD KEY `FK_CAPTOR` (`idCaptor`),
-  ADD KEY `FK_MEASURE` (`idMeasure`);
+	ADD PRIMARY KEY (`idData`),
+	ADD KEY `FK_CAPTOR` (`idCaptor`),
+	ADD KEY `FK_MEASURE` (`idMeasure`);
 
 ALTER TABLE `measures`
-  ADD PRIMARY KEY (`idMeasure`),
-  ADD KEY `FK_NAME` (`idName`),
-  ADD KEY `idName` (`idName`);
+	ADD PRIMARY KEY (`idMeasure`),
+	ADD KEY `FK_NAME` (`idName`),
+	ADD KEY `idName` (`idName`);
 
 ALTER TABLE `measuresName`
-  ADD PRIMARY KEY (`idName`),
-  ADD UNIQUE KEY `Name` (`Name`);
+	ADD PRIMARY KEY (`idName`),
+	ADD UNIQUE KEY `Name` (`Name`);
 
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`idUser`),
-  ADD UNIQUE KEY `nichandle` (`nichandle`);
+	ADD PRIMARY KEY (`idUser`),
+	ADD UNIQUE KEY `nichandle` (`nichandle`);
 
 
 -- AUTO_INCREMENT des tables
 
 ALTER TABLE `captors`
-  MODIFY `idCaptor` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=4;
+	MODIFY `idCaptor` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=4;
 
 ALTER TABLE `data`
-  MODIFY `idData` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=10;
+	MODIFY `idData` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=10;
 
 ALTER TABLE `measures`
-  MODIFY `idMeasure` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=10;
+	MODIFY `idMeasure` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=10;
 
 ALTER TABLE `measuresName`
-  MODIFY `idName` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=4;
+	MODIFY `idName` int(11) NOT NULL AUTO_INCREMENT COMMENT '[int(11)]', AUTO_INCREMENT=4;
 
 ALTER TABLE `users`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
+	MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
 
 
 -- Contraintes des tables exportées
 
 ALTER TABLE `data`
-  ADD CONSTRAINT `FK_CAPTOR` FOREIGN KEY (`idCaptor`) REFERENCES `captors` (`idCaptor`),
-  ADD CONSTRAINT `FK_MEASURE` FOREIGN KEY (`idMeasure`) REFERENCES `measures` (`idMeasure`);
+	ADD CONSTRAINT `FK_CAPTOR` FOREIGN KEY (`idCaptor`) REFERENCES `captors` (`idCaptor`),
+	ADD CONSTRAINT `FK_MEASURE` FOREIGN KEY (`idMeasure`) REFERENCES `measures` (`idMeasure`);
 
 ALTER TABLE `measures`
-  ADD CONSTRAINT `FK_NAME` FOREIGN KEY (`idName`) REFERENCES `measuresName` (`idName`);
+	ADD CONSTRAINT `FK_NAME` FOREIGN KEY (`idName`) REFERENCES `measuresName` (`idName`);
 
 
 -- Procédures
@@ -149,7 +150,7 @@ ALTER TABLE `measures`
 DELIMITER $$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastCarbonData` ()  NO SQL
-SELECT `Name`, `value`
+SELECT `name`, `unit`, `value`
 FROM `measures`
 JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
 WHERE `measuresName`.idName = 2
@@ -158,7 +159,7 @@ DESC
 LIMIT 1$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastData` (IN `measureName` VARCHAR(64) CHARSET utf8)  NO SQL
-SELECT `Name`, `value`
+SELECT `name`, `unit`, `value`
 FROM `measures`
 JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
 WHERE `measuresName`.Name = measureName
@@ -167,7 +168,7 @@ DESC
 LIMIT 1$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastOzoneData` ()  NO SQL
-SELECT `Name`, `value`
+SELECT `name`, `unit`, `value`
 FROM `measures`
 JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
 WHERE `measuresName`.idName = 1
@@ -176,7 +177,7 @@ DESC
 LIMIT 1$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastParticulesData` ()  NO SQL
-SELECT `Name`, `value`
+SELECT `name`, `unit`, `value`
 FROM `measures`
 JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
 WHERE `measuresName`.idName = 3
@@ -185,7 +186,7 @@ DESC
 LIMIT 1$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllCarbon` ()  NO SQL
-SELECT `id`, `Name`, `value`, `time`, `rssi`, `lat`, `lon`
+SELECT `id`, `name`, `unit`, `value`, `time`, `rssi`, `lat`, `lon`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
@@ -195,7 +196,7 @@ ORDER BY `measures`.idMeasure
 DESC$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllOzonne` ()  NO SQL
-SELECT `id`, `Name`, `value`, `time`, `rssi`, `lat`, `lon`
+SELECT `id`, `name`, `unit`, `value`, `time`, `rssi`, `lat`, `lon`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
@@ -205,7 +206,7 @@ ORDER BY `measures`.idMeasure
 DESC$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllParticules` ()  NO SQL
-SELECT `id`, `Name`, `value`, `time`, `rssi`, `lat`, `lon`
+SELECT `id`, `name`, `unit`, `value`, `time`, `rssi`, `lat`, `lon`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
@@ -215,7 +216,7 @@ ORDER BY `measures`.idMeasure
 DESC$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByCaptor` ()  NO SQL
-SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
+SELECT `id`, `name`, `unit`, `value`, `rssi`, `lat`, `lon`, `time`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
@@ -225,12 +226,37 @@ ORDER BY `measures`.idMeasure
 DESC$$
 
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByOnceCaptor` (IN `captor` VARCHAR(128) CHARSET utf8)  NO SQL
-SELECT `id`, `Name`, `value`, `rssi`, `lat`, `lon`, `time`
+SELECT `id`, `name`, `unit`, `value`, `rssi`, `lat`, `lon`, `time`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
 JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
 WHERE `captors`.id = captor
+ORDER BY `measures`.idMeasure
+DESC$$
+
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listLastDataByCaptor` ()  NO SQL
+SELECT `id`, `name`, `unit`, `value`, `rssi`, `lat`, `lon`, `time`
+FROM `data`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
+WHERE `measures`.idMeasure IN (
+	SELECT MAX(`measures`.idMeasure)
+	FROM `measures`
+	JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+	WHERE `measuresName`.idName = 1
+	UNION
+	SELECT MAX(`measures`.idMeasure)
+	FROM `measures`
+	JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+	WHERE `measuresName`.idName = 2
+	UNION
+	SELECT MAX(`measures`.idMeasure)
+	FROM `measures`
+	JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+	WHERE `measuresName`.idName = 3
+)
 ORDER BY `measures`.idMeasure
 DESC$$
 

@@ -4,88 +4,28 @@
  -->
 <!DOCTYPE html>
 <!-- INSTANT -->
+<?php
+	$carbon = ACMPModel::getLastValueForCarbon();
+	$ozone = ACMPModel::getLastValueForOzone();
+	$particules = ACMPModel::getLastValueForParticules();
+?>
 <aside id="instant">
-	<br />
 	<figure class="highcharts-figure">
 		<div id="carbon" class="chart-container"></div>
-		<p class="highcharts-description">Capteur de Co2 </p>
-			<aside> <!-- aside pour faire un box ou un conteneur -->
-				<article> <!-- le contenu (paragraphe, image etc...) -->
-					<div id="container">
-						<h5> Explication du graphique Co2 : </h5>
-						<h6>  Graphique Highcharts montrant une jauge solide avec des données dynamiques. Une carte distincte est utilisée et elle est mise à jour dynamiquement toutes les quelques secondes. Comme le montre ce graphique, la couleur de la jauge peut changer en fonction de la valeur des données affichées.
-							<br>
-							Une émission de dioxyde de carbone est un rejet de ce gaz dans l'atmosphère terrestre, quelle qu'en soit la source. Le dioxyde de carbone (CO2) est le deuxième gaz à effet de serre le plus important dans l'atmosphère, après la vapeur d'eau, les deux contribuant respectivement à hauteur de 26 % et 60 % à l'effet de serre.
-							<br> Ce graphique a pour but de montrer la concentration de Co2 dans l'atmosphère à l'aide d'une base de données sur un point donnés par la map où une carte est disposée comportant le capteur de Co2. L'unité du dioxyde de carbone est le "ppm".
-								 Nous voyons donc grâce à cette jauge les dernières valeurs en live.
-						</h6>
-					</div>
-				</article>
-			</aside>
 	</figure>
-	<br />
 	<figure class="highcharts-figure">
-		<div id="ozonne" class="chart-container"></div>
-		<p class="highcharts-description"> Capteur d'ozone </p>
-		<h5> Explication du graphique d'ozonne : </h5>
-		<h6>  Graphique Highcharts montrant une jauge solide avec des données dynamiques. Une carte distincte est utilisée et elle est mise à jour dynamiquement toutes les quelques secondes. Comme le montre ce graphique, la couleur de la jauge peut changer en fonction de la valeur des données affichées.
-			<br>
-
+		<div id="ozone" class="chart-container"></div>
 	</figure>
-	<br />
 	<figure class="highcharts-figure">
 		<div id="particules" class="chart-container"></div>
-		<p class="highcharts-description"> Capteur de particules fines </p>
-		<h5> Explication du graphique particules fines : </h5>
-		<h6>  Graphique Highcharts montrant une jauge solide avec des données dynamiques. Une carte distincte est utilisée et elle est mise à jour dynamiquement toutes les quelques secondes. Comme le montre ce graphique, la couleur de la jauge peut changer en fonction de la valeur des données affichées.
-			<br>
 	</figure>
-
-
-	<footer>
-		<p id="footer"> Copyright Flore Philippe alias Flopicx; BTS SN opt: électronique et communication </p>
-	</footer>
-	<!-- Texte javascript -->
 	<script type="text/javascript">
-
-	// The speed gauge Co2
-	var chartSpeed = Highcharts.chart('container-Co2', Highcharts.merge(gaugeOptions, {
-	        yAxis: {
-	                min: 0,
-	                max: 1000,
-	                title: {
-	                        text: 'Co2'
-	                }
-	        },
-
-	        credits: {
-	                enabled: false
-	        },
-
-	        series: [{
-	                name: 'Co2',
-	                data: [<?php echo(ACMPModel::getLastValueFor('Ozonne')['value']); ?>],
-	                dataLabels: {
-	                        format:
-	                                '<div style="text-align:center">' +
-	                                '<span style="font-size:30px">{y}</span><br/>' +
-	                                '<span style="font-size:12px;opacity:0.4">ppm</span>' +
-	                                '</div>'
-	                },
-
-	                tooltip: {
-	                                valueSuffix: 'ppm'
-	                }
-	        }]
-	}));
-
-		// Ozone
-		var ozone = Highcharts.chart('ozonne', Highcharts.merge(gaugeOptions, {
+		var carbon = Highcharts.chart('carbon', Highcharts.merge(gaugeOptions, {
 			yAxis: {
 				min: 0,
-				max: 200,
+				max: 100000,
 				title: {
-					text: 'Ozone'
+					text: '<?php echo($carbon['name']); ?>'
 				}
 			},
 
@@ -94,17 +34,48 @@
 			},
 
 			series: [{
-				name: 'Ozone',
-				data: [<?php echo(ACMPModel::getLastValueFor('Ozonne')['value']); ?>],
+				name: '<?php echo($carbon['name']); ?>',
+				data: [<?php echo($carbon['value']); ?>],
+				dataLabels: {
+					format:
+						'<div style="text-align:center">' +
+						'<span style="font-size:30px">{y}</span><br/>' +
+						'<span style="font-size:12px;opacity:0.4"><?php echo($carbon['unit']); ?></span>' +
+						'</div>'
+				},
+
+				tooltip: {
+					valueSuffix: '<?php echo($carbon['unit']); ?>'
+				}
+			}]
+		}));
+
+		// Ozone
+		var ozone = Highcharts.chart('ozone', Highcharts.merge(gaugeOptions, {
+			yAxis: {
+				min: 0,
+				max: 200,
+				title: {
+					text: '<?php echo($ozone['name']); ?>'
+				}
+			},
+
+			credits: {
+				enabled: false
+			},
+
+			series: [{
+				name: '<?php echo($ozone['name']); ?>',
+				data: [<?php echo($ozone['value']); ?>],
 				dataLabels: {
 					format:
 						'<div style="text-align:center">' +
 						'<span style="font-size:25px">{y}</span><br/>' +
-						'<span style="font-size:12px;opacity:0.4">dobson</span>' +
+						'<span style="font-size:12px;opacity:0.4"><?php echo($ozone['unit']); ?></span>' +
 						'</div>'
 				},
 				tooltip: {
-					valueSuffix: ' dobson'
+					valueSuffix: ' <?php echo($ozone['unit']); ?>'
 				}
 			}]
 		}));
@@ -115,7 +86,7 @@
 				min: 0,
 				max: 200,
 				title: {
-					text: 'Particules Fines'
+					text: '<?php echo($particules['name']); ?>'
 				}
 			},
 
@@ -124,17 +95,17 @@
 			},
 
 			series: [{
-				name: 'Particules Fines',
-				data: [<?php echo(ACMPModel::getLastValueFor('Particules Fines')['value']); ?>],
+				name: '<?php echo($particules['name']); ?>',
+				data: [<?php echo($particules['value']); ?>],
 				dataLabels: {
 					format:
 						'<div style="text-align:center">' +
 						'<span style="font-size:25px">{y}</span><br/>' +
-						'<span style="font-size:12px;opacity:0.4">ppm</span>' +
+						'<span style="font-size:12px;opacity:0.4"><?php echo($particules['name']); ?></span>' +
 						'</div>'
 				},
 				tooltip: {
-					valueSuffix: ' ppm'
+					valueSuffix: ' <?php echo($particules['unit']); ?>'
 				}
 			}]
 		}));
@@ -143,17 +114,14 @@
 			clearInterval(gaugeInterval);
 
 		var gaugeInterval = setInterval(() => {
-			// CO2 Update
-			var point;
-
 			if(carbon)
 				xhr.getLastValueFor(carbon.series[0].points[0], 'CO2');
 
 			if(ozone)
-				xhr.getLastValueFor(ozone.series[0].points[0], 'Ozonne');
+				xhr.getLastValueFor(ozone.series[0].points[0], 'Ozone');
 
 			if(particules)
 				xhr.getLastValueFor(particules.series[0].points[0], 'Particules Fines');
-		}, 2000);
+		}, 1000);
 	</script>
 </aside>
