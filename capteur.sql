@@ -149,8 +149,9 @@ ALTER TABLE `measures`
 
 DELIMITER $$
 
+-- GetLastCarbonData
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastCarbonData` ()  NO SQL
-SELECT `name`, `unit`, `value`
+SELECT `name`, `unit`, `value` / 100 AS `value`
 FROM `measures`
 JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
 WHERE `measuresName`.idName = 2
@@ -158,8 +159,12 @@ ORDER BY `measures`.idMeasure
 DESC
 LIMIT 1$$
 
+-- GetLastData
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastData` (IN `measureName` VARCHAR(64) CHARSET utf8)  NO SQL
-SELECT `name`, `unit`, `value`
+SELECT `name`, `unit`, CASE
+		WHEN `name` = "CO2" THEN `value` / 100
+		ELSE `value`
+	END AS `value`
 FROM `measures`
 JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
 WHERE `measuresName`.Name = measureName
@@ -167,6 +172,7 @@ ORDER BY `measures`.idMeasure
 DESC
 LIMIT 1$$
 
+-- GetLastOzoneData
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastOzoneData` ()  NO SQL
 SELECT `name`, `unit`, `value`
 FROM `measures`
@@ -176,6 +182,7 @@ ORDER BY `measures`.idMeasure
 DESC
 LIMIT 1$$
 
+-- GetLastParticulesData
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastParticulesData` ()  NO SQL
 SELECT `name`, `unit`, `value`
 FROM `measures`
@@ -185,8 +192,9 @@ ORDER BY `measures`.idMeasure
 DESC
 LIMIT 1$$
 
+-- listAllCarbon
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllCarbon` ()  NO SQL
-SELECT `id`, `name`, `unit`, `value`, `time`, `rssi`, `lat`, `lon`
+SELECT `id`, `name`, `unit`, `value` / 100 AS `value`, `time`, `rssi`, `lat`, `lon`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
@@ -195,6 +203,7 @@ WHERE `measures`.idName = 2
 ORDER BY `measures`.idMeasure
 DESC$$
 
+-- listAllOzonne
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllOzonne` ()  NO SQL
 SELECT `id`, `name`, `unit`, `value`, `time`, `rssi`, `lat`, `lon`
 FROM `data`
@@ -205,6 +214,7 @@ WHERE `measures`.idName = 1
 ORDER BY `measures`.idMeasure
 DESC$$
 
+-- listAllParticules
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listAllParticules` ()  NO SQL
 SELECT `id`, `name`, `unit`, `value`, `time`, `rssi`, `lat`, `lon`
 FROM `data`
@@ -215,8 +225,12 @@ WHERE `measures`.idName = 3
 ORDER BY `measures`.idMeasure
 DESC$$
 
+-- listDataByCaptor
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByCaptor` ()  NO SQL
-SELECT `id`, `name`, `unit`, `value`, `rssi`, `lat`, `lon`, `time`
+SELECT `id`, `name`, `unit`, SELECT `id`, `name`, `unit`, CASE
+		WHEN `name` = "CO2" THEN `value` / 100
+		ELSE `value`
+	END AS `value`, `rssi`, `lat`, `lon`, `time`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
@@ -225,8 +239,12 @@ WHERE 1
 ORDER BY `measures`.idMeasure
 DESC$$
 
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByOnceCaptor` (IN `captor` VARCHAR(128) CHARSET utf8)  NO SQL
-SELECT `id`, `name`, `unit`, `value`, `rssi`, `lat`, `lon`, `time`
+-- listDataByOnceCaptor
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listDataByOnceCaptor` (IN `captor` VARCHAR(128) CHARSET utf8) NO SQL
+SELECT `id`, `name`, `unit`, CASE
+		WHEN `name` = "CO2" THEN `value` / 100
+		ELSE `value`
+	END AS `value`, `rssi`, `lat`, `lon`, `time`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
@@ -235,8 +253,12 @@ WHERE `captors`.id = captor
 ORDER BY `measures`.idMeasure
 DESC$$
 
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listLastDataByCaptor` ()  NO SQL
-SELECT `id`, `name`, `unit`, `value`, `rssi`, `lat`, `lon`, `time`
+-- listLastDataByCaptor
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listLastDataByCaptor` () NO SQL
+SELECT `id`, `name`, `unit`, CASE
+		WHEN `name` = "CO2" THEN `value` / 100
+		ELSE `value`
+	END AS `value`, `rssi`, `lat`, `lon`, `time`
 FROM `data`
 JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
