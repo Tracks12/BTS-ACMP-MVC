@@ -37,8 +37,7 @@ function addMarker(group, coord, icon, content) {
  */
 function mapInit(box, data) {
 	let icon = {
-		broadcast: new H.map.Icon("/assets/img/broadcast.png", { size: { w: 30, h: 45 }}),
-		location: new H.map.Icon("/assets/img/location.png", { size: { w: 30, h: 45 }})
+		marker: new H.map.Icon("/assets/img/marker.png", { size: { w: 30, h: 45 }})
 	};
 
 	let defaultLayers = platform.createDefaultLayers();
@@ -46,10 +45,6 @@ function mapInit(box, data) {
 		toulouse: { // Coordonnée de la ville
 			lat: 43.60226,
 			lng: 1.44548
-		},
-		deodat: { // Coordonnée du Lyçée
-			lat: 43.5904,
-			lng: 1.4257
 		}
 	};
 
@@ -77,21 +72,9 @@ function mapInit(box, data) {
 		ui.addBubble(bubble);
 	}, false);
 
-	let content = [
-		'<div class="mapInfoBox">',
-			'<a href="https://deodat.mon-ent-occitanie.fr/" target="_blank">Lycée Déodat de Séverac</a>',
-		'</div>'
-	].join('');
-	addMarker(group, pos.deodat, icon.broadcast, content);
-
 	data.forEach((item) => {
-		let time = new Date(item.time);
-		time = `${time.toLocaleDateString()} à ${time.toLocaleTimeString()}`;
-
-		let coord = {
-			lat: item.lat,
-			lng: item.lon
-		};
+		item.time = new Date(item.time);
+		item.time = `${item.time.toLocaleDateString()} à ${item.time.toLocaleTimeString()}`;
 
 		let content = [
 			'<div class="mapInfoBox">',
@@ -99,12 +82,20 @@ function mapInit(box, data) {
 				`<p>Puissance: ${item.rssi} dBm</p>`,
 				`<p>Grandeur: ${item.name}</p>`,
 				`<p>Valeur: ${item.value} ${item.unit}</p>`,
-				`<p>Prise le: ${time}</p>`,
+				`<p>Prise le: ${item.time}</p>`,
 				`<p><a class="button" onclick="javascript:mapLink('${item.id}');">Télémétrie</a></p>`,
 			'</div>'
 		].join('');
 
-		addMarker(group, coord, icon.location, content);
+		addMarker(
+			group,
+			{
+				lat: item.lat,
+				lng: item.lon
+			},
+			icon.marker,
+			content
+		);
 	});
 }
 

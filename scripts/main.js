@@ -111,7 +111,7 @@ $(document).ready(() => {
 		})
 		.scrolly();
 
-	$('section').click(() => {
+	$('#signIn, section').click(() => {
 		if($(window).width() < 720)
 			$('nav ul').slideUp();
 	});
@@ -121,6 +121,13 @@ $(document).ready(() => {
 			$('nav ul').removeAttr('style');
 	});
 
+	$('#login .close').click(() => {
+		$('#login').fadeOut();
+	});
+
+	$('#signIn').click(() => {
+		$('#login').fadeIn();
+	});
 
 });
 
