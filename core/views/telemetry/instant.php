@@ -23,7 +23,7 @@
 		var carbon = Highcharts.chart('carbon', Highcharts.merge(gaugeOptions, {
 			yAxis: {
 				min: 0,
-				max: 100000,
+				max: 1000,
 				title: {
 					text: '<?php echo($carbon['name']); ?>'
 				}

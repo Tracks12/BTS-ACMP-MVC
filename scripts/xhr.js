@@ -21,7 +21,7 @@ class xhr {
 			data: `measureName=${measureName}`,
 			dataType: 'json',
 			success: (result) => {
-				box.update(parseInt(result.response.value));
+				box.update(parseFloat(result.response.value));
 			}
 		});
 	}
