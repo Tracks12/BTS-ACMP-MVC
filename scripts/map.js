@@ -81,7 +81,7 @@ function mapInit(box, data) {
 				`<p>ID Capteur: ${item.id}</p>`,
 				`<p>Puissance: ${item.rssi} dBm</p>`,
 				`<p>Grandeur: ${item.name}</p>`,
-				`<p>Valeur: ${item.value} ${item.unit}</p>`,
+				`<p>Valeur: ${parseFloat(item.value)} ${item.unit}</p>`,
 				`<p>Prise le: ${item.time}</p>`,
 				`<p><a class="button" onclick="javascript:mapLink('${item.id}');">Télémétrie</a></p>`,
 			'</div>'
