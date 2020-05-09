@@ -74,16 +74,26 @@ function mapInit(box, data) {
 
 	data.forEach((item) => {
 		item.time = new Date(item.time);
-		item.time = `${item.time.toLocaleDateString()} à ${item.time.toLocaleTimeString()}`;
+		item.time = `${item.time.toLocaleDateString()} ${item.time.toLocaleTimeString()}`;
 
 		let content = [
-			'<div class="mapInfoBox">',
-				`<p>ID Capteur: ${item.id}</p>`,
-				`<p>Puissance: ${item.rssi} dBm</p>`,
-				`<p>Grandeur: ${item.name}</p>`,
-				`<p>Valeur: ${parseFloat(item.value)} ${item.unit}</p>`,
-				`<p>Prise le: ${item.time}</p>`,
-				`<p><a class="button" onclick="javascript:mapLink('${item.id}');">Télémétrie</a></p>`,
+			'<div class="H_tib_content H_tib_content_captor">',
+				'<div class="H_rdo_title">',
+					`<h1>${item.name}</h1>`,
+				'</div>',
+				'<div class="H_tib_desc">',
+					'<div class="H_tib_time">',
+						'<span class="H_tib_left">id:</span>',
+						`<span class="H_tib_right">${item.id}</span><br />`,
+						'<span class="H_tib_left">signal:</span>',
+						`<span class="H_tib_right"> ${item.rssi} dBm</span><br />`,
+						'<span class="H_tib_left">valeur:</span>',
+						`<span class="H_tib_right"> ${parseFloat(item.value)} ${item.unit}</span><br />`,
+						'<span class="H_tib_left">date:</span>',
+						`<span class="H_tib_right"> ${item.time}</span><br />`,
+					'</div>',
+					`<a class="button" onclick="javascript:mapLink('${item.id}');">télémétrie</a>`,
+				'</div>',
 			'</div>'
 		].join('');
 

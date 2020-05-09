@@ -33,7 +33,7 @@ nav {
 	padding-left: 6.75em;
 	position: fixed;
 	width: 100%;
-	z-index: 1;
+	z-index: 5;
 }
 
 nav div {
@@ -119,7 +119,7 @@ nav ul li .row {
 	position: fixed;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	z-index: 1;
+	z-index: 10;
 }
 
 /**
@@ -218,13 +218,20 @@ section aside {
 	width: 100%;
 }
 
-#map .H_ib_content > .mapInfoBox {
-	margin: -16px -28px -20px -16px;
-	padding: 2em 1em 1em 1em;
-	width: 16em;
+#map .H_tib_content_captor {
+	width: 20em;
 }
 
-#map .H_ib_content > .mapInfoBox .button {
+#map .H_tib_content_captor *::first-letter,
+#map .H_tib_content_captor .H_tib_left {
+	text-transform: capitalize !important;
+}
+
+#map .H_tib_content_captor .H_tib_desc {
+	padding: 0px 16px 20px 16px;
+}
+
+#map .H_tib_content_captor .H_tib_desc .button {
 	background: var(--submit-color);
 	border-radius: 6px;
 	color: var(--contrast-color);
@@ -237,7 +244,7 @@ section aside {
 	text-decoration: none;
 	transition: background .2s;
 }
-#map .H_ib_content > .mapInfoBox .button:hover {
+#map .H_tib_content_captor .H_tib_desc .button:hover {
 	background: var(--submit-color-hover);
 	color: rgb(250, 250, 250);
 }
