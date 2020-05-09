@@ -406,10 +406,17 @@ form > input[type="submit"]:hover {
 	background: rgba(0, 250, 100, .75);
 }
 
+form > p {
+	display: none;
+	margin-top: .5em;
+	text-align: center;
+	text-transform: capitalize;
+}
+
 form > a {
 	color: rgb(0, 100, 250);
 	display: block;
-	margin-top: 1em;
+	margin-top: .5em;
 }
 form > a::first-letter {
 	text-transform: capitalize;

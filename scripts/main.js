@@ -121,14 +121,24 @@ $(document).ready(() => {
 			$('nav ul').removeAttr('style');
 	});
 
-	$('#login .close').click(() => {
-		$('#login').fadeOut();
-	});
-
 	$('#signIn').click(() => {
 		$('#login').fadeIn();
 	});
 
+	$('#login .close').click(() => {
+		$('#login').fadeOut();
+	});
+
+	$('#login form').submit(function(e) {
+		e.preventDefault();
+		let data = $(this).serialize();
+
+		$(this)
+			.find('.auth-return')
+			.fadeOut();
+
+		xhr.signIn(data);
+	});
 });
 
 /**

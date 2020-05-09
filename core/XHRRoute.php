@@ -11,12 +11,19 @@
 		 */
 
 		case '/?getLastValueFor':
-			$arr = ACMPModel::getLastValueFor(services::isInput($_POST['measureName']));
-			$return = [ "response" => $arr ];
+			$return = [ "response" => ACMPModel::getLastValueFor(services::isInput($_POST['measureName'])) ];
+			break;
+
+		case '/?signIn':
+			$return = [ "response" => ACMPController::signin(services::isInput($_POST['data'])) ];
+			break;
+
+		case '/?signOut':
+			$return = [ "response" => session_destroy() ];
 			break;
 
 		case '/?ping':
-			$return = [ "response" => 'ping' ];
+			$return = [ "response" => $_SESSION ];
 			break;
 
 		default:

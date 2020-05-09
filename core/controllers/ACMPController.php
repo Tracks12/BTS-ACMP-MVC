@@ -7,7 +7,7 @@
 
 	class ACMPController {
 		/**
-		 * contact form controller
+		 * captor insert form controller
 		 * @param array $data array of post request
 		 * @return array json result of request
 		 */
@@ -21,6 +21,53 @@
 				],
 				"passed"	=> true
 			];
+
+			return $post;
+		}
+
+		/**
+		 * signin form controller
+		 * @param string $data array of post request
+		 * @return array json result of request
+		 */
+		public function signin(string $data): array {
+			$listLogin = ACMPModel::getLogin();
+
+			$data = base64_decode($data);
+			$data = preg_split("/[\s,&]+/", $data);
+
+			foreach($data as $item) {
+				$split = preg_split("/[\s,=]+/", $item);
+				$data[$split[0]] = $split[1];
+			}
+
+			$post = [
+				"value"		=> [
+					'uname'	=> services::isInput($data['uname']),
+					'upass'	=> services::pswEncrypt(services::isInput($data['upass']))
+				],
+				"error"		=> "connexion refusée",
+				"passed"	=> false
+			];
+
+			foreach($listLogin as $item) {
+				if(
+					$post['value']['uname'] === $item['nichandle']
+					&& $post['value']['upass'] === $item['password']
+				) {
+					$post = [
+						"value"		=> [
+							"uname"			=> $item['nichandle'],
+							"lastAddr"	=> $_SERVER['REMOTE_ADDR'],
+							"isAdmin"		=> boolval($item['isAdmin'])
+						],
+						"error"		=> NULL,
+						"passed"	=> ACMPModel::uptLoginLastConnect(intVal($item['idUser']))
+					];
+
+					$_SESSION = $post['value'];
+				}
+			}
 
 			return $post;
 		}

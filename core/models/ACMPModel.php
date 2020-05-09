@@ -110,6 +110,36 @@
 
 			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
 		}
+
+		/**
+		 * get list of login table
+		 * @return array all login rows
+		 */
+		public function getLogin(): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query('
+				SELECT `idUser`, `nichandle`, `password`, `isAdmin`
+				FROM `users`
+			');
+
+			return $req->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		/**
+		 * update user last connexion time
+		 * @param int user id to apply
+		 * @return bool [true/false]
+		 */
+		public function uptLoginLastConnect(int $id): bool {
+			$bdd = bdd::connect();
+			$req = $bdd->prepare("
+				UPDATE `users`
+				SET `lastConnect` = ?, `lastAddr` = ?
+				WHERE `idUser` = ?
+			");
+
+			return $req->execute([date("Y-m-d H:i:s", time()), $_SERVER['REMOTE_ADDR'], $id]);
+		}
 	}
 
 	/**
