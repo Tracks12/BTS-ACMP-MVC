@@ -73,6 +73,8 @@ var gaugeOptions = {
 };
 
 $(document).ready(() => {
+	xhr.isConnect();
+
 	// Dynamic URI
 	let uri = window.location.hash.split('#')[1];
 	uri = !uri ? 'map' : uri;
@@ -121,13 +123,10 @@ $(document).ready(() => {
 			$('nav ul').removeAttr('style');
 	});
 
-	$('#signIn').click(() => {
-		$('#login').fadeIn();
-	});
+	$('#signIn').click(() => $('#login').fadeIn());
+	$('#signOut').click(() => xhr.signOut());
 
-	$('#login .close').click(() => {
-		$('#login').fadeOut();
-	});
+	$('#login .close').click(() => $('#login').fadeOut());
 
 	$('#login form').submit(function(e) {
 		e.preventDefault();

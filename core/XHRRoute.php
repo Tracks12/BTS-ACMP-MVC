@@ -22,8 +22,12 @@
 			$return = [ "response" => session_destroy() ];
 			break;
 
-		case '/?ping':
+		case '/?isConnect':
 			$return = [ "response" => $_SESSION ];
+			break;
+
+		case '/?ping':
+			$return = [ "response" => "pong" ];
 			break;
 
 		default:

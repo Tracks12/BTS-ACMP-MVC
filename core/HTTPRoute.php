@@ -16,10 +16,6 @@
 			header("location: https://github.com/Tracks12/BTS-ACMP-MVC");
 			break;
 
-		case "/github-doc": // GitHub Doc Page Link
-			header("location: https://tracks12.github.io/BTS-ACMP-MVC/");
-			break;
-
 		case "/ui": // Node Red UI Link
 			header("location: http://{$_SERVER['HTTP_HOST']}:1880/ui");
 			break;

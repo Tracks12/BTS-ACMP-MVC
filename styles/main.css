@@ -447,19 +447,21 @@ font-weight: 600;
 	background-size: cover;
 	display: inline-block;
 	height: 7em;
+	opacity: 0;
 	width: 7em;
 }
 
 #about > header > .title > hr {
 	border: none;
 	border-bottom: 1px solid currentColor;
-	margin: 2em;
+	margin: 0 2em;
 }
 
 #about > header > .title > h1 {
 	color: rgb(0, 0, 0);
 	font-family: "ROCKET";
 	font-size: 6em;
+	opacity: 0;
 }
 
 /**

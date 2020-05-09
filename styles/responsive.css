@@ -48,6 +48,13 @@
 	}
 
 	/**
+	 * Splash Screen Responsive
+	 */
+	#splash > h1 {
+		font-size: 5em;
+	}
+
+	/**
 	 * Global Menu Responsive
 	 */
 	.global-menu {
