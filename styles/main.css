@@ -444,21 +444,24 @@ font-weight: 600;
 
 #about > header > .title > .pic {
 	background: url('/assets/img/logo.png') center no-repeat;
-	background-size: cover;
-	display: inline-block;
+	background-size: 7em;
+	display: block;
 	height: 7em;
 	opacity: 0;
-	width: 7em;
+	width: 100%;
 }
 
 #about > header > .title > hr {
 	border: none;
 	border-bottom: 1px solid currentColor;
-	margin: 0 2em;
+	display: inline-block;
+	margin: 0;
+	width: 0;
 }
 
 #about > header > .title > h1 {
 	color: rgb(0, 0, 0);
+	display: block;
 	font-family: "ROCKET";
 	font-size: 6em;
 	opacity: 0;
