@@ -58,7 +58,7 @@
 
 		case "/about": // About Page
 			http_response_code(200);
-			$page = 'about.php';
+			$page = 'about/about.php';
 			break;
 	}
 

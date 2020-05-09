@@ -18,7 +18,7 @@
 		<p>ces capteurs ont pour but de récupérer des données pour avertir l'usager du niveau de pollution d'un secteur pré-défini.</p>
 	</article>
 </aside>
-<?php require_once('./core/views/footer.html'); ?>
+<?php require_once('./core/views/about/footer.html'); ?>
 <script language="javascript" type="text/javascript">
 	$('#about').ready(() => {
 		$('#about > header > .title > hr').animate({
