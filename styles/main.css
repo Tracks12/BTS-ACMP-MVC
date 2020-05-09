@@ -61,6 +61,9 @@ nav ul .title {
 	position: fixed;
 	text-transform: uppercase;
 }
+nav ul .title:hover {
+	text-shadow: 0 0 10px currentColor;
+}
 nav ul .button:last-child {
 	position: fixed;
 	right: 0;
@@ -104,6 +107,132 @@ nav ul li .ico {
 nav ul li .row {
 	padding-left: 15px;
 	float: right;
+}
+
+/**
+* Form Style
+*/
+form {
+	display: block;
+}
+
+form > .close {
+	cursor: pointer;
+	fill: rgb(50, 50, 50);
+	height: 1.75em;
+	padding: 1em;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: .3s all;
+	width: 1.75em;
+}
+
+form > .close:hover {
+	fill: rgb(250, 50, 50);
+	transform: rotateZ(90deg);
+}
+
+form > h2 {
+	border-bottom: 2px solid currentColor;
+	color: rgb(50, 50, 50);
+	display: inline-block;
+	margin: 0 0 1.5em 0;
+	padding: 0 0 .5em 0;
+	text-transform: capitalize;
+}
+
+form > .input-area {
+	display: block;
+	position: relative;
+}
+
+form > .input-area > label {
+	color: rgb(50, 50, 50);
+	margin-left: 2.25em;
+	position: absolute;
+	top: .5em;
+	transition: .25s all;
+	z-index: -1;
+}
+
+form > .input-area > label::first-letter {
+	text-transform: uppercase;
+}
+
+form > .input-area > input {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid currentColor;
+	box-shadow: none;
+	color: rgb(50, 50, 50);
+	display: block;
+	font-size: 1em;
+	margin: .25em 0 1.5em 0;
+	outline: none;
+	padding: .5em .25em .5em 2.25em;
+	transition: .2s all;
+	width: 12em;
+}
+
+form > .input-area > input:valid {
+	border-color: rgb(0, 250, 100);
+}
+
+form > .input-area > input:focus {
+	border-color: rgb(0, 150, 250);
+}
+
+form > .input-area > input:focus ~ label,
+form > .input-area > input:valid ~ label {
+	font-size: .75em;
+	margin-left: 0;
+	top: -1em;
+}
+
+form > .input-area > span {
+	color: rgb(50, 50, 50);
+	font-size: 1.5em;
+	left: .25em;
+	position: absolute;
+	text-align: center;
+	top: .25em;
+	width: 1em;
+}
+
+form > input[type="submit"] {
+	background: rgba(0, 250, 100, 1);
+	border: none;
+	border-radius: .25em;
+	box-sizing: border-box;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	display: block;
+	font-size: 1.25em;
+	margin: 1.5em 0 0 0;
+	padding: .5em;
+	text-transform: capitalize;
+	transition: .1s all;
+	width: 100%;
+}
+form > input[type="submit"]:hover {
+	background: rgba(0, 250, 100, .75);
+}
+
+form > p {
+	display: none;
+	margin-top: .5em;
+	text-align: center;
+	text-transform: capitalize;
+}
+
+form > a {
+	color: rgb(0, 100, 250);
+	display: block;
+	margin-top: .5em;
+}
+form > a::first-letter {
+	text-transform: capitalize;
 }
 
 /**
@@ -297,129 +426,40 @@ font-weight: 600;
 }
 
 /**
-* Form Style
-*/
-form {
+ * About Page
+ */
+#about > header {
 	display: block;
+	height: 100vh;
 }
 
-form > .close {
-	cursor: pointer;
-	fill: rgb(50, 50, 50);
-	height: 1.75em;
-	padding: 1em;
+#about > header > .title {
+	left: 50%;
+	margin-top: 2em;
 	position: absolute;
-	right: 0;
-	top: 0;
-	transition: .3s all;
-	width: 1.75em;
+	text-align: center;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
-form > .close:hover {
-	fill: rgb(250, 50, 50);
-	transform: rotateZ(90deg);
-}
-
-form > h2 {
-	border-bottom: 2px solid currentColor;
-	color: rgb(50, 50, 50);
+#about > header > .title > .pic {
+	background: url('/assets/img/logo.png') center no-repeat;
+	background-size: cover;
 	display: inline-block;
-	margin: 0 0 1.5em 0;
-	padding: 0 0 .5em 0;
-	text-transform: capitalize;
+	height: 7em;
+	width: 7em;
 }
 
-form > .input-area {
-	display: block;
-	position: relative;
-}
-
-form > .input-area > label {
-	color: rgb(50, 50, 50);
-	margin-left: 2.25em;
-	position: absolute;
-	top: .5em;
-	transition: .25s all;
-	z-index: -1;
-}
-
-form > .input-area > label::first-letter {
-	text-transform: uppercase;
-}
-
-form > .input-area > input {
-	background: transparent;
+#about > header > .title > hr {
 	border: none;
-	border-bottom: 2px solid currentColor;
-	box-shadow: none;
-	color: rgb(50, 50, 50);
-	display: block;
-	font-size: 1em;
-	margin: .25em 0 1.5em 0;
-	outline: none;
-	padding: .5em .25em .5em 2.25em;
-	transition: .2s all;
-	width: 12em;
+	border-bottom: 1px solid currentColor;
+	margin: 2em;
 }
 
-form > .input-area > input:valid {
-	border-color: rgb(0, 250, 100);
-}
-
-form > .input-area > input:focus {
-	border-color: rgb(0, 150, 250);
-}
-
-form > .input-area > input:focus ~ label,
-form > .input-area > input:valid ~ label {
-	font-size: .75em;
-	margin-left: 0;
-	top: -1em;
-}
-
-form > .input-area > span {
-	color: rgb(50, 50, 50);
-	font-size: 1.5em;
-	left: .25em;
-	position: absolute;
-	text-align: center;
-	top: .25em;
-	width: 1em;
-}
-
-form > input[type="submit"] {
-	background: rgba(0, 250, 100, 1);
-	border: none;
-	border-radius: .25em;
-	box-sizing: border-box;
-	color: rgb(255, 255, 255);
-	cursor: pointer;
-	display: block;
-	font-size: 1.25em;
-	margin: 1.5em 0 0 0;
-	padding: .5em;
-	text-transform: capitalize;
-	transition: .1s all;
-	width: 100%;
-}
-form > input[type="submit"]:hover {
-	background: rgba(0, 250, 100, .75);
-}
-
-form > p {
-	display: none;
-	margin-top: .5em;
-	text-align: center;
-	text-transform: capitalize;
-}
-
-form > a {
-	color: rgb(0, 100, 250);
-	display: block;
-	margin-top: .5em;
-}
-form > a::first-letter {
-	text-transform: capitalize;
+#about > header > .title > h1 {
+	color: rgb(0, 0, 0);
+	font-family: "ROCKET";
+	font-size: 6em;
 }
 
 /**
