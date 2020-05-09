@@ -7,8 +7,15 @@
 			<h1>acmp</h1>
 		</div>
 	</header>
+	<article class="btn-link">
+		<a class="button" target="_blank" href="/github">
+			<span class="ico fa fa-github"></span>
+			<span class="label">GitHub</span>
+		</a>
+	</article>
 	<article>
-		
+		<p>ACMP est un projet de BTS de conception web permettant d'interfacer des capteurs de pollutions répartis dans l’agglomération toulousaine sur un site web.</p>
+		<p>ces capteurs ont pour but de récupérer des données pour avertir l'usager du niveau de pollution d'un secteur pré-défini.</p>
 	</article>
 </aside>
 <?php require_once('./core/views/footer.html'); ?>

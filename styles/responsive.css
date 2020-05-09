@@ -69,9 +69,17 @@
 	.global-menu .item:hover {
 		width: auto;
 	}
+
+	/**
+	 * About Frame Responsive
+	 */
+	#about > article {
+		margin: 2em 1em;
+		width: auto;
+	}
 }
 
-@media (max-width: 600px) {
+@media(max-width: 600px) {
 	/**
 	 * Gauge Responsive
 	 */
