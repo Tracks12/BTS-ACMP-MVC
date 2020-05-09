@@ -7,11 +7,13 @@
 
 	$page = 'index.php';
 
+	/**
+	 * Redirect URI
+	 */
 	switch(services::isInput($_SERVER['REQUEST_URI'])) {
 		/**
-		 * Redirect URI
+		 * Link's Resources
 		 */
-
 		case "/github": // GitHub Page Link
 			header("location: https://github.com/Tracks12/BTS-ACMP-MVC");
 			break;
@@ -24,8 +26,9 @@
 			header("location: http://{$_SERVER['HTTP_HOST']}:1880/");
 			break;
 
-
-
+		/**
+		 * Page's Resources
+		 */
 		case "/map": // About Page
 			http_response_code(200);
 			$page = 'map.php';

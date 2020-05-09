@@ -5,11 +5,13 @@
 	 * Page   : XHRRoute.php
 	 */
 
+	/**
+ 	 * Redirect URI
+ 	 */
 	switch(services::isInput($_SERVER['REQUEST_URI'])) {
 		/**
-		 * Redirect URI
-		 */
-
+	 	 * XHR API Response
+	 	 */
 		case '/?getLastValueFor':
 			$return = [ "response" => ACMPModel::getLastValueFor(services::isInput($_POST['measureName'])) ];
 			break;
