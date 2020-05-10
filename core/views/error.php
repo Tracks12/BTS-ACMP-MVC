@@ -74,7 +74,7 @@
 					}
 
 					$consolePrompt = [
-						"$cursor GET {$_SERVER['REQUEST_URI']}\n\n",
+						"$cursor {$_SERVER['REQUEST_METHOD']} {$_SERVER['REQUEST_URI']}\n\n",
 						"[<span class='warn'>error</span>]\n\n",
 						"[<span class='purple'>code</span>]:[{$HTTPResponse['code']}]\n",
 						"[<span class='purple'>note</span>]:[{$HTTPResponse['note']}]\n",

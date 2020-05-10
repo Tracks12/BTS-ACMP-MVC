@@ -5,3 +5,8 @@ Options -Indexes -FollowSymLinks -MultiViews
 
 ErrorDocument 403 /
 ErrorDocument 404 /
+
+<files *.logs>
+	Order allow,deny
+	Deny from all
+</files>

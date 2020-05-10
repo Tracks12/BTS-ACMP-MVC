@@ -6,6 +6,7 @@
 	 */
 
 	require_once('./core/connect.php');
+	require_once('./core/logger.php');
 	require_once('./core/services.php');
 	require_once('./core/models/ACMPModel.php');
 
@@ -22,6 +23,7 @@
 
 		require_once('./core/controllers/ACMPController.php');
 		require_once('./core/XHRRoute.php');
+		log::write('XHR');
 	}
 
 	else {
@@ -30,6 +32,7 @@
 		 */
 
 		require_once('./core/HTTPRoute.php');
+		log::write('HTTP');
 	}
 
 	/**
