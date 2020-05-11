@@ -31,7 +31,7 @@
 		 */
 		case "/map": // About Page
 			http_response_code(200);
-			$page = 'map.php';
+			$page = 'map.html';
 			break;
 
 		case "/telemetry": // About Page

@@ -11,14 +11,28 @@
 class xhr {
 	/**
 	 * ping the API
+	 * @return {object} json response
 	 */
 	static ping() {
-		$.ajax({
+		return $.ajax({
+			async: false,
 			url: '/?ping',
 			type: 'post',
 			dataType: 'json',
-			success: (result) => console.log(result.response)
-		});
+		}).responseJSON;
+	}
+
+	/**
+	 * get last captors information's from data base
+	 * @return {object} json response
+	 */
+	static getLastCaptorsPositions() {
+		return $.ajax({
+			async: false,
+			url: '/?getLastCaptorsPositions',
+			type: 'post',
+			dataType: 'json',
+		}).responseJSON.response;
 	}
 
 	/**
@@ -28,6 +42,7 @@ class xhr {
 	 */
 	static getLastValueFor(box, measureName) {
 		$.ajax({
+			async: true,
 			url: '/?getLastValueFor',
 			type: 'post',
 			data: `measureName=${measureName}`,
@@ -43,6 +58,7 @@ class xhr {
 	 */
 	static isConnect() {
 		$.ajax({
+			async: true,
 			url: '/?isConnect',
 			type: 'post',
 			dataType: 'json',
@@ -62,6 +78,7 @@ class xhr {
 	 */
 	static signIn(data) {
 		$.ajax({
+			async: true,
 			url: '/?signIn',
 			type: 'post',
 			data: `data=${btoa(data)}`,
@@ -99,6 +116,7 @@ class xhr {
 	 */
 	static signOut() {
 		$.ajax({
+			async: true,
 			url: '/?signOut',
 			type: 'post',
 			dataType: 'json',

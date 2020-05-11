@@ -12,6 +12,11 @@
 		/**
 	 	 * XHR API Response
 	 	 */
+
+		case '/?getLastCaptorsPositions':
+			$return = [ "response" => ACMPModel::getLastDataByCaptor() ];
+			break;
+
 		case '/?getLastValueFor':
 			$return = [ "response" => ACMPModel::getLastValueFor(services::isInput($_POST['measureName'])) ];
 			break;
