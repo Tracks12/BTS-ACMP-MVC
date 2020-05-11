@@ -228,14 +228,15 @@ class xhr {
 	 * ping the back side
 	 */
 	static ping() {
-		$.ajax({
+		return $.ajax({
+			async: false,
 			type: 'post',
 			url: '/?ping',
 			dataType: 'json',
 			success: (result) => {
-				console.log(result.response);
+				return result.response;
 			}
-		});
+		}).responseJSON;
 	}
 }
 ```
