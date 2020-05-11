@@ -12,10 +12,11 @@
 		 */
 		public static function write(string $type): bool {
 			self::$handle = fopen(self::$path, 'a');
+			$time = date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME_FLOAT']);
 			$response = http_response_code();
 
 			self::$content = [
-				"[LOG] - ",
+				"[$time] - ",
 				"[$response]",
 				":[{$_SERVER['REMOTE_ADDR']}]",
 				":[$type]",
