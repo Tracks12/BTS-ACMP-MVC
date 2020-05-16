@@ -7,8 +7,21 @@
 
 	class log {
 		/**
+		 * read the log file
+		 * @return string log contents file
+		 */
+		public static function read(): string {
+			self::$handle = fopen(self::$path, 'r');
+
+			self::$content = fread(self::$handle, filesize(self::$path));
+			fclose(self::$handle);
+
+			return self::$content;
+		}
+
+		/**
 		 * write in log file
-		 * @return bool NULL
+		 * @return bool [true]
 		 */
 		public static function write(string $type): bool {
 			self::$handle = fopen(self::$path, 'a');
@@ -32,8 +45,8 @@
 		}
 
 		// Log File Info's
-		private static $handle = NULL;
 		private static $path = './.logs';
+		private static $handle = NULL;
 		private static $content = NULL;
 	}
 

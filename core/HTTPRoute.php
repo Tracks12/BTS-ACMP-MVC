@@ -50,19 +50,29 @@
 			break;
 
 		case "/captors": // About Page
-			if(isset($_SESSION['user']))
+			if(isset($_SESSION['isAdmin'])) {
 				http_response_code(200);
+				$page = 'captors/captors.php';
+			}
 
 			else
 				http_response_code(404);
 
-			$page = 'captors/captors.php';
 			break;
 
 		case "/about": // About Page
 			http_response_code(200);
 			$page = 'about/about.php';
 			break;
+
+		/**
+		 * System Info
+		 */
+		case '/log':
+			if(isset($_SESSION['isAdmin'])) {
+				echo("<pre>".log::read()."</pre>");
+				die();
+			} break;
 	}
 
 	switch(http_response_code()) {

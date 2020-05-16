@@ -5,6 +5,8 @@
 	 * Page   : index.php
 	 */
 
+	declare(strict_types = 1);
+
 	require_once('./core/connect.php');
 	require_once('./core/logger.php');
 	require_once('./core/services.php');
