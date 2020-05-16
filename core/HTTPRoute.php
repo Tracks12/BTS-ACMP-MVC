@@ -64,15 +64,6 @@
 			http_response_code(200);
 			$page = 'about/about.php';
 			break;
-
-		/**
-		 * System Info
-		 */
-		case '/log':
-			if(isset($_SESSION['isAdmin'])) {
-				echo("<pre>".log::read()."</pre>");
-				die();
-			} break;
 	}
 
 	switch(http_response_code()) {
