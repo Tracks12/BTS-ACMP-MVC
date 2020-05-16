@@ -14,7 +14,7 @@
  */
 function mapLink(href) {
 	document.location.hash = `telemetry-${href}`;
-	$("section").load(`/${href}`);
+	$("section").load("/telemetry");
 }
 
 /**

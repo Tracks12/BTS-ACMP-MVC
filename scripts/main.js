@@ -72,13 +72,20 @@ var gaugeOptions = {
 	}
 };
 
+function dynamicURI(uri) { // Dynamic URI
+	uri = (typeof uri === 'undefined') ? 'map' : uri;
+
+	uri = uri.split('-');
+	uri = (uri.length > 1 && uri[0] == "telemetry") ? uri[0] : uri[0];
+
+	$('section').load(`/${uri}`);
+}
+
 $(document).ready(() => {
 	xhr.isConnect();
 
-	// Dynamic URI
-	let uri = window.location.hash.split('#')[1];
-	uri = !uri ? 'map' : uri;
-	$('section').load(`/${uri}`);
+	// URI
+	dynamicURI(window.location.hash.split('#')[1]);
 
 	// Splash Screen Animation
 	$('#splash').ready(() => {

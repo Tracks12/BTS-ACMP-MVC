@@ -36,12 +36,12 @@
 
 		case "/telemetry": // About Page
 			http_response_code(200);
-			$page = 'telemetry/telemetry.php';
+			$page = 'telemetry/telemetry.html';
 			break;
 
 		case "/instant": // About Page
 			http_response_code(200);
-			$page = 'telemetry/instant.php';
+			$page = 'telemetry/instant.html';
 			break;
 
 		case "/story": // About Page
@@ -52,7 +52,7 @@
 		case "/captors": // About Page
 			if(isset($_SESSION['isAdmin'])) {
 				http_response_code(200);
-				$page = 'captors/captors.php';
+				$page = 'captors/captors.html';
 			}
 
 			else

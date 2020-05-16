@@ -6,12 +6,12 @@
 	 */
 
 	/**
- 	 * Redirect URI
- 	 */
+	 * Redirect URI
+	 */
 	switch(services::isInput($_SERVER['REQUEST_URI'])) {
 		/**
-	 	 * XHR API Response
-	 	 */
+		 * XHR API Response
+		 */
 
 		case '/?getLastCaptorsPositions':
 			$return = [ "response" => ACMPModel::getLastDataByCaptor() ];
@@ -19,6 +19,10 @@
 
 		case '/?getLastValueFor':
 			$return = [ "response" => ACMPModel::getLastValueFor(services::isInput($_POST['measureName'])) ];
+			break;
+
+		case '/?getLastValues':
+			$return = [ "response" => ACMPModel::getLastValues() ];
 			break;
 
 		case '/?signIn':

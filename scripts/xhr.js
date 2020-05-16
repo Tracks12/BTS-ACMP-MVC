@@ -36,7 +36,7 @@ class xhr {
 	}
 
 	/**
-	 * get last value from measure name
+	 * get last value from measure name for instant
 	 * @param {object} box html object to update
 	 * @param {string} measureName measure name
 	 */
@@ -51,6 +51,19 @@ class xhr {
 				box.update(parseFloat(result.response.value));
 			}
 		});
+	}
+
+	/**
+	 * get last values measures for instant
+	 * @return {object} json response
+	 */
+	static getLastValues() {
+		return $.ajax({
+			async: false,
+			url: '/?getLastValues',
+			type: 'post',
+			dataType: 'json'
+		}).responseJSON.response;
 	}
 
 	/**

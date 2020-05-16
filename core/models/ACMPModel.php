@@ -67,39 +67,6 @@
 		}
 
 		/**
-		 * get last value for a Ozone measure
-		 * @return array last ozone value
-		 */
-		public function getLastValueForOzone(): array {
-			$bdd = bdd::connect();
-			$req = $bdd->query("CALL `GetLastOzoneData`()");
-
-			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
-		}
-
-		/**
-		 * get last value for a Carbon measure
-		 * @return array last carbon value
-		 */
-		public function getLastValueForCarbon(): array {
-			$bdd = bdd::connect();
-			$req = $bdd->query("CALL `GetLastCarbonData`()");
-
-			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
-		}
-
-		/**
-		 * get last value for a Particules measure
-		 * @return array last particules value
-		 */
-		public function getLastValueForParticules(): array {
-			$bdd = bdd::connect();
-			$req = $bdd->query("CALL `GetLastParticulesData`()");
-
-			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
-		}
-
-		/**
 		 * get last value for a physic measure
 		 * @param string $measureName measure name
 		 * @return array last value
@@ -109,6 +76,17 @@
 			$req = $bdd->query("CALL `GetLastData`('$measureName')");
 
 			return $req->fetchAll(PDO::FETCH_ASSOC)[0];
+		}
+
+		/**
+		 * get last value for a physic measure
+		 * @return array last value
+		 */
+		public function getLastValues(): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query("CALL `GetLastAllData`()");
+
+			return $req->fetchAll(PDO::FETCH_ASSOC);
 		}
 
 		/**

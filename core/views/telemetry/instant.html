@@ -4,11 +4,6 @@
  -->
 <!DOCTYPE html>
 <!-- INSTANT -->
-<?php
-	$carbon = ACMPModel::getLastValueForCarbon();
-	$ozone = ACMPModel::getLastValueForOzone();
-	$particules = ACMPModel::getLastValueForParticules();
-?>
 <aside id="instant">
 	<figure class="highcharts-figure">
 		<div id="carbon" class="chart-container"></div>
@@ -20,12 +15,13 @@
 		<div id="particules" class="chart-container"></div>
 	</figure>
 	<script type="text/javascript">
+		var request = xhr.getLastValues();
 		var carbon = Highcharts.chart('carbon', Highcharts.merge(gaugeOptions, {
 			yAxis: {
 				min: 0,
 				max: 1000,
 				title: {
-					text: '<?php echo($carbon['name']); ?>'
+					text: request[2].name
 				}
 			},
 
@@ -34,18 +30,18 @@
 			},
 
 			series: [{
-				name: '<?php echo($carbon['name']); ?>',
-				data: [<?php echo($carbon['value']); ?>],
+				name: request[2].name,
+				data: [parseFloat(request[2].value)],
 				dataLabels: {
 					format:
 						'<div style="text-align:center">' +
 						'<span style="font-size:30px">{y}</span><br/>' +
-						'<span style="font-size:12px;opacity:0.4"><?php echo($carbon['unit']); ?></span>' +
+						`<span style="font-size:12px;opacity:0.4">${request[2].unit}</span>` +
 						'</div>'
 				},
 
 				tooltip: {
-					valueSuffix: '<?php echo($carbon['unit']); ?>'
+					valueSuffix: request[2].unit
 				}
 			}]
 		}));
@@ -56,7 +52,7 @@
 				min: 0,
 				max: 200,
 				title: {
-					text: '<?php echo($ozone['name']); ?>'
+					text: request[1].name
 				}
 			},
 
@@ -65,17 +61,17 @@
 			},
 
 			series: [{
-				name: '<?php echo($ozone['name']); ?>',
-				data: [<?php echo($ozone['value']); ?>],
+				name: request[1].name,
+				data: [parseFloat(request[1].value)],
 				dataLabels: {
 					format:
 						'<div style="text-align:center">' +
 						'<span style="font-size:25px">{y}</span><br/>' +
-						'<span style="font-size:12px;opacity:0.4"><?php echo($ozone['unit']); ?></span>' +
+						`<span style="font-size:12px;opacity:0.4">${request[1].unit}</span>` +
 						'</div>'
 				},
 				tooltip: {
-					valueSuffix: ' <?php echo($ozone['unit']); ?>'
+					valueSuffix: request[1].unit
 				}
 			}]
 		}));
@@ -86,7 +82,7 @@
 				min: 0,
 				max: 200,
 				title: {
-					text: '<?php echo($particules['name']); ?>'
+					text: request[0].name
 				}
 			},
 
@@ -95,17 +91,17 @@
 			},
 
 			series: [{
-				name: '<?php echo($particules['name']); ?>',
-				data: [<?php echo($particules['value']); ?>],
+				name: request[0].name,
+				data: [parseFloat(request[0].value)],
 				dataLabels: {
 					format:
 						'<div style="text-align:center">' +
 						'<span style="font-size:25px">{y}</span><br/>' +
-						'<span style="font-size:12px;opacity:0.4"><?php echo($particules['unit']); ?></span>' +
+						`<span style="font-size:12px;opacity:0.4">${request[0].unit}</span>` +
 						'</div>'
 				},
 				tooltip: {
-					valueSuffix: ' <?php echo($particules['unit']); ?>'
+					valueSuffix: request[0].unit
 				}
 			}]
 		}));

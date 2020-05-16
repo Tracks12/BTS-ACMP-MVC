@@ -52,19 +52,21 @@
 	?>
 
 	<!-- balise pour l'affichage du graph -->
-	<div id="chart1" style="width: 100%; height: 400px;"></div>
+	<div id="carbon-chart" style="width: 100%; height: 400px;"></div>
+	<div id="ozone-chart" style="width: 100%; height: 400px;"></div>
+	<div id="particules-chart" style="width: 100%; height: 400px;"></div>
 
 	<script type="text/javascript">
 		$(() => { // fonction en javascript
-			chart1 = new Highcharts.Chart({ // Créer un object HighChart en JS
+			carbonChart = new Highcharts.Chart({ // Créer un object HighChart en JS
 				chart: {
-					renderTo: 'chart1', // Sélectionner la balise html pour l'afficher
+					renderTo: 'carbon-chart', // Sélectionner la balise html pour l'afficher
 					type: 'spline',
 					backgroundColor: null
 				},
 
 				title: {
-					text: '<?php echo("{$listeChart[0]["name"]}, {$listeChart[1]["name"]}, {$listeChart[2]["name"]}"); ?>',
+					text: '<?php echo("{$listeChart[0]["name"]}"); ?>',
 					style:{
 						color: '#4572A7'
 					}
@@ -85,14 +87,12 @@
 				},
 
 				yAxis: [{
-					<?php for($i = 0; $i < count($listeChart); $i++) { ?>
 					labels: {
-						format: '{value} <?php echo($listeChart[$i]["unit"]); ?>',
+						format: '{value} <?php echo($listeChart[0]["unit"]); ?>',
 						style: {
 							color: '#C03000'
 						}
 					},
-					<?php } ?>
 				}],
 
 				tooltip: {
@@ -101,7 +101,7 @@
 					borderRadius: 6,
 					borderWidth: 3,
 					xDateFormat: '%A %e %b  %H:%M:%S',
-					valueSuffix: ''
+					valueSuffix: ' <?php echo("{$listeChart[0]["unit"]}"); ?>'
 				},
 
 				plotOptions: {
@@ -113,14 +113,140 @@
 				},
 
 				series: [
-					<?php for($i = 0; $i < count($listeChart); $i++) { ?>
 					{
-						name: '<?php echo("{$listeChart[$i]["name"]} ({$listeChart[$i]["unit"]})"); ?>',
-						color: '<?php echo($listeChart[$i]["color"]); ?>',
+						name: '<?php echo("{$listeChart[0]["name"]} ({$listeChart[0]["unit"]})"); ?>',
+						color: '<?php echo($listeChart[0]["color"]); ?>',
 						zIndex: 1,
-						data: <?php echo(json_encode($listeChart[$i]["data"])); ?> // c'est ici qu'on insert les data
-					},
-					<?php } ?>
+						data: <?php echo(json_encode($listeChart[0]["data"])); ?> // c'est ici qu'on insert les data
+					}
+				]
+			});
+
+			ozoneChart = new Highcharts.Chart({ // Créer un object HighChart en JS
+				chart: {
+					renderTo: 'ozone-chart', // Sélectionner la balise html pour l'afficher
+					type: 'spline',
+					backgroundColor: null
+				},
+
+				title: {
+					text: '<?php echo("{$listeChart[1]["name"]}"); ?>',
+					style:{
+						color: '#4572A7'
+					}
+				},
+
+				legend: { // La légende
+					enabled: true,
+					backgroundColor: 'white',
+					borderRadius: 14
+				},
+
+				xAxis: {
+					type: 'datetime',
+					dateTimeLabelFormats: {
+						month: '%e. %b', // Formatage sur le mois
+						year: '%b' // Formatage sur l'année
+					}
+				},
+
+				yAxis: [{
+					labels: {
+						format: '{value} <?php echo($listeChart[1]["unit"]); ?>',
+						style: {
+							color: '#C03000'
+						}
+					}
+				}],
+
+				tooltip: {
+					shared: true,
+					crosshairs: true,
+					borderRadius: 6,
+					borderWidth: 3,
+					xDateFormat: '%A %e %b  %H:%M:%S',
+					valueSuffix: ' <?php echo("{$listeChart[1]["unit"]}"); ?>'
+				},
+
+				plotOptions: {
+					spline: {
+						marker: {
+							enabled: false
+						}
+					}
+				},
+
+				series: [
+					{
+						name: '<?php echo("{$listeChart[1]["name"]} ({$listeChart[1]["unit"]})"); ?>',
+						color: '<?php echo($listeChart[1]["color"]); ?>',
+						zIndex: 1,
+						data: <?php echo(json_encode($listeChart[1]["data"])); ?> // c'est ici qu'on insert les data
+					}
+				]
+			});
+
+			particulesChart = new Highcharts.Chart({ // Créer un object HighChart en JS
+				chart: {
+					renderTo: 'particules-chart', // Sélectionner la balise html pour l'afficher
+					type: 'spline',
+					backgroundColor: null
+				},
+
+				title: {
+					text: '<?php echo("{$listeChart[2]["name"]}"); ?>',
+					style:{
+						color: '#4572A7'
+					}
+				},
+
+				legend: { // La légende
+					enabled: true,
+					backgroundColor: 'white',
+					borderRadius: 14
+				},
+
+				xAxis: {
+					type: 'datetime',
+					dateTimeLabelFormats: {
+						month: '%e. %b', // Formatage sur le mois
+						year: '%b' // Formatage sur l'année
+					}
+				},
+
+				yAxis: [{
+					labels: {
+						format: '{value} <?php echo($listeChart[2]["unit"]); ?>',
+						style: {
+							color: '#C03000'
+						}
+					}
+				}],
+
+				tooltip: {
+					shared: true,
+					crosshairs: true,
+					borderRadius: 6,
+					borderWidth: 3,
+					xDateFormat: '%A %e %b  %H:%M:%S',
+					valueSuffix: ' <?php echo("{$listeChart[2]["unit"]}"); ?>'
+				},
+
+				plotOptions: {
+					spline: {
+						marker: {
+							enabled: false
+						}
+					}
+				},
+
+				series: [
+					{
+						name: '<?php echo("{$listeChart[2]["name"]} ({$listeChart[2]["unit"]})"); ?>',
+						color: '<?php echo($listeChart[2]["color"]); ?>',
+						zIndex: 1,
+						data: <?php echo(json_encode($listeChart[2]["data"])); ?> // c'est ici qu'on insert les data
+					}
 				]
 			});
 		});
