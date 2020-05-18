@@ -111,13 +111,13 @@
 
 		var gaugeInterval = setInterval(() => {
 			if(carbon)
-				xhr.getLastValueFor(carbon.series[0].points[0], 'CO2');
+				xhr.getLastValueFor(carbon.series[0].points[0], '3100000000000001');
 
 			if(ozone)
-				xhr.getLastValueFor(ozone.series[0].points[0], 'Ozone');
+				xhr.getLastValueFor(ozone.series[0].points[0], '3100000000000002');
 
 			if(particules)
-				xhr.getLastValueFor(particules.series[0].points[0], 'Particules Fines');
+				xhr.getLastValueFor(particules.series[0].points[0], '3100000000000003');
 		}, 2000);
 	</script>
 </aside>

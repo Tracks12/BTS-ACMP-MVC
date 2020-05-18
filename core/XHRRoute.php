@@ -18,7 +18,7 @@
 			break;
 
 		case '/?getLastValueFor':
-			$return = [ "response" => ACMPModel::getLastValueFor(services::isInput($_POST['measureName'])) ];
+			$return = [ "response" => ACMPModel::getLastValueFor(services::isInput($_POST['id'])) ];
 			break;
 
 		case '/?getLastValues':

@@ -38,14 +38,14 @@ class xhr {
 	/**
 	 * get last value from measure name for instant
 	 * @param {object} box html object to update
-	 * @param {string} measureName measure name
+	 * @param {string} id measure name
 	 */
-	static getLastValueFor(box, measureName) {
+	static getLastValueFor(box, id) {
 		$.ajax({
 			async: true,
 			url: '/?getLastValueFor',
 			type: 'post',
-			data: `measureName=${measureName}`,
+			data: `id=${id}`,
 			dataType: 'json',
 			success: (result) => {
 				box.update(parseFloat(result.response.value));
