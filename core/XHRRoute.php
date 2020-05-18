@@ -25,6 +25,10 @@
 			$return = [ "response" => ACMPModel::getLastValues() ];
 			break;
 
+		case '/?getDataByOnceCaptor':
+			$return = [ "response" => ACMPModel::getDataByOnceCaptor(services::isInput($_POST['id'])) ];
+			break;
+
 		case '/?signIn':
 			$return = [ "response" => ACMPController::signin(services::isInput($_POST['data'])) ];
 			break;

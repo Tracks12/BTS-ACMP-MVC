@@ -63,7 +63,33 @@
 			$bdd = bdd::connect();
 			$req = $bdd->query("CALL `listDataByOnceCaptor`('$captor')");
 
-			return $req->fetchAll(PDO::FETCH_ASSOC);
+			$data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+			$return = [
+				"color" => NULL,
+				"name"  => NULL,
+				"unit"  => NULL,
+				"data"  => []
+			];
+
+			foreach($data as $item) {
+				switch($item['name']) {
+					case 'Particules Fines': $return["color"] = "blue"; break;
+					case 'Ozone': $return["color"] = "green"; break;
+					case 'CO2': $return["color"] = "red"; break;
+					default: $return["color"] = "grey"; break;
+				}
+
+				$return["name"] = $item['name'];
+				$return["unit"] = $item['unit'];
+
+				array_push($return["data"], [
+					strtotime($item['time']) * 1000,
+					floatval($item['value'])
+				]);
+			}
+
+			return $return;
 		}
 
 		/**

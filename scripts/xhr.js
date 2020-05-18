@@ -55,13 +55,28 @@ class xhr {
 
 	/**
 	 * get last values measures for instant
-	 * @return {object} json response
+	 * @return {array} json response
 	 */
 	static getLastValues() {
 		return $.ajax({
 			async: false,
 			url: '/?getLastValues',
 			type: 'post',
+			dataType: 'json'
+		}).responseJSON.response;
+	}
+
+	/**
+	 * get all data by one captor id for story
+	 * @param {string} id string of catpor id
+	 * @return {object} json response of request
+	 */
+	static getDataByOnceCaptor(id) {
+		return $.ajax({
+			async: false,
+			url: '/?getDataByOnceCaptor',
+			type: 'post',
+			data: `id=${id}`,
 			dataType: 'json'
 		}).responseJSON.response;
 	}
