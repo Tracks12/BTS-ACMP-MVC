@@ -6,118 +6,59 @@
 <!-- INSTANT -->
 <aside id="instant">
 	<figure class="highcharts-figure">
-		<div id="carbon" class="chart-container"></div>
+		<div id="0" class="chart-container"></div>
 	</figure>
 	<figure class="highcharts-figure">
-		<div id="ozone" class="chart-container"></div>
+		<div id="1" class="chart-container"></div>
 	</figure>
 	<figure class="highcharts-figure">
-		<div id="particules" class="chart-container"></div>
+		<div id="2" class="chart-container"></div>
 	</figure>
 	<script type="text/javascript">
 		var request = xhr.getLastValues();
-		var carbon = Highcharts.chart('carbon', Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 1000,
-				title: {
-					text: request[2].name
-				}
-			},
+		var jauge = [];
 
-			credits: {
-				enabled: false
-			},
+		for(let i = 0; i < request.length; i++)
+			jauge[i] = {
+				chart: Highcharts.chart(`${i}`, Highcharts.merge(gaugeOptions, {
+					yAxis: {
+						min: 0,
+						max: 1000,
+						title: {
+							text: request[i].name
+						}
+					},
 
-			series: [{
-				name: request[2].name,
-				data: [parseFloat(request[2].value)],
-				dataLabels: {
-					format:
-						'<div style="text-align:center">' +
-						'<span style="font-size:30px">{y}</span><br/>' +
-						`<span style="font-size:12px;opacity:0.4">${request[2].unit}</span>` +
-						'</div>'
-				},
+					credits: {
+						enabled: false
+					},
 
-				tooltip: {
-					valueSuffix: request[2].unit
-				}
-			}]
-		}));
+					series: [{
+						name: request[i].name,
+						data: [parseFloat(request[i].value)],
+						dataLabels: {
+							format:
+								'<div style="text-align:center">' +
+								'<span style="font-size:30px">{y}</span><br/>' +
+								`<span style="font-size:12px;opacity:0.4">${request[i].unit}</span>` +
+								'</div>'
+						},
 
-		// Ozone
-		var ozone = Highcharts.chart('ozone', Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 200,
-				title: {
-					text: request[1].name
-				}
-			},
-
-			credits: {
-				enabled: false
-			},
-
-			series: [{
-				name: request[1].name,
-				data: [parseFloat(request[1].value)],
-				dataLabels: {
-					format:
-						'<div style="text-align:center">' +
-						'<span style="font-size:25px">{y}</span><br/>' +
-						`<span style="font-size:12px;opacity:0.4">${request[1].unit}</span>` +
-						'</div>'
-				},
-				tooltip: {
-					valueSuffix: request[1].unit
-				}
-			}]
-		}));
-
-		// Particules Fines
-		var particules = Highcharts.chart('particules', Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 200,
-				title: {
-					text: request[0].name
-				}
-			},
-
-			credits: {
-				enabled: false
-			},
-
-			series: [{
-				name: request[0].name,
-				data: [parseFloat(request[0].value)],
-				dataLabels: {
-					format:
-						'<div style="text-align:center">' +
-						'<span style="font-size:25px">{y}</span><br/>' +
-						`<span style="font-size:12px;opacity:0.4">${request[0].unit}</span>` +
-						'</div>'
-				},
-				tooltip: {
-					valueSuffix: request[0].unit
-				}
-			}]
-		}));
+						tooltip: {
+							valueSuffix: request[i].unit
+						}
+					}]
+				})),
+				idCaptor: request[i].id
+			};
 
 		if(gaugeInterval)
 			clearInterval(gaugeInterval);
 
 		var gaugeInterval = setInterval(() => {
-			if(carbon)
-				xhr.getLastValueFor(carbon.series[0].points[0], '3100000000000001');
-
-			if(ozone)
-				xhr.getLastValueFor(ozone.series[0].points[0], '3100000000000002');
-
-			if(particules)
-				xhr.getLastValueFor(particules.series[0].points[0], '3100000000000003');
+			for(let i = 0; i < request.length; i++)
+				if(jauge[i])
+					xhr.getLastValueFor(jauge[i].chart.series[0].points[0], jauge[i].idCaptor);
 		}, 2000);
 	</script>
 </aside>
