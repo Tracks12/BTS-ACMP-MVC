@@ -29,38 +29,37 @@
 
 		$('.global-menu').remove();
 		$('#telemetry').load('/once', () => {
-			var jauge = {
-				chart: Highcharts.chart('jauge', Highcharts.merge(gaugeOptions, {
-					yAxis: {
-						min: parseInt(request.unitMin),
-						max: parseInt(request.unitMax),
-						title: {
-							text: request.name
-						}
+			$('h2').text(idCaptor);
+
+			var jauge = Highcharts.chart('jauge', Highcharts.merge(gaugeOptions, {
+				yAxis: {
+					min: parseInt(request.unitMin),
+					max: parseInt(request.unitMax),
+					title: {
+						text: request.name
+					}
+				},
+
+				credits: {
+					enabled: false
+				},
+
+				series: [{
+					name: request.name,
+					data: [parseFloat(request.value)],
+					dataLabels: {
+						format:
+							'<div style="text-align:center">' +
+							'<span style="font-size:30px">{y}</span><br/>' +
+							`<span style="font-size:12px;opacity:0.4">${request.unit}</span>` +
+							'</div>'
 					},
 
-					credits: {
-						enabled: false
-					},
-
-					series: [{
-						name: request.name,
-						data: [parseFloat(request.value)],
-						dataLabels: {
-							format:
-								'<div style="text-align:center">' +
-								'<span style="font-size:30px">{y}</span><br/>' +
-								`<span style="font-size:12px;opacity:0.4">${request.unit}</span>` +
-								'</div>'
-						},
-
-						tooltip: {
-							valueSuffix: request.unit
-						}
-					}]
-				})),
-				idCaptor: idCaptor
-			};
+					tooltip: {
+						valueSuffix: request.unit
+					}
+				}]
+			}));
 
 			var charts = new Highcharts.Chart({ // Créer un object HighChart en JS
 				chart: {
@@ -131,7 +130,7 @@
 
 			var gaugeInterval = setInterval(() => {
 				if(jauge)
-					xhr.getLastValueFor(jauge.chart.series[0].points[0], jauge.idCaptor);
+					xhr.getLastValueFor(jauge.series[0].points[0], idCaptor);
 			}, 2000);
 		});
 	}

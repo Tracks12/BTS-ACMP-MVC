@@ -98,19 +98,19 @@ $(document).ready(() => {
 	});
 
 	// Nav Bar Event
-	$('nav div').click(() => {
+	$('.navbar div').click(() => {
 		$('nav ul').slideToggle();
 		$('nav ul ul').css('display', 'none');
 	});
 
-	$('nav ul li').click(function() {
+	$('.navbar ul li').click(function() {
 		if($(window).width() < 720)
 			$(this)
 				.find('ul')
 				.slideToggle();
 	});
 
-	$('nav ul li a')
+	$('.navbar ul li a')
 		.click(function() {
 			if(!(typeof gaugeInterval === 'undefined'))
 				clearInterval(gaugeInterval);
@@ -122,12 +122,12 @@ $(document).ready(() => {
 
 	$('#signIn, section').click(() => {
 		if($(window).width() < 720)
-			$('nav ul').slideUp();
+			$('.navbar ul').slideUp();
 	});
 
 	$(window).resize(() => {
 		if($(window).width() > 720)
-			$('nav ul').removeAttr('style');
+			$('.navbar ul').removeAttr('style');
 	});
 
 	$('#signIn').click(() => $('#login').fadeIn());

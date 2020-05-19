@@ -1,15 +1,32 @@
 <!-- TELEMETRY -->
-<nav>
+<style>
+	h2 { padding: 1em; text-align: center; }
+	.monitor { display: block; }
+</style>
+<nav class="subnav">
 	<ul>
-		<li>temp réel</li>
-		<li>historique</li>
+		<li><a class="gauge active">temp réel</a></li>
+		<li><a class="graph">historique</a></li>
 	</ul>
 </nav>
-<div class="gauge">
+<h2></h2>
+<div class="monitor" id="gauge">
 	<figure class="highcharts-figure">
 		<div id="jauge" class="chart-container"></div>
 	</figure>
 </div>
-<div class="chart">
+<div class="monitor" id="graph" style="display: none">
 	<div id="chart" style="width: 100%; height: 400px;"></div>
 </div>
+<script language="javascript" type="text/javascript">
+	$(".subnav a")
+		.click(function() {
+			$(".subnav a").removeClass("active")
+
+			let id = $(this).attr('class');
+
+			$(this).addClass('active');
+			$(".monitor").css("display", "none");
+			$(`#${id}`).fadeIn(1000);
+		});
+</script>
