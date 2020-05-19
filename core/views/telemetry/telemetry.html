@@ -29,7 +29,7 @@
 
 		$('.global-menu').remove();
 		$('#telemetry').load('/once', () => {
-			$('h2').text(idCaptor);
+			$('h3').text(idCaptor);
 
 			var jauge = Highcharts.chart('jauge', Highcharts.merge(gaugeOptions, {
 				yAxis: {
