@@ -16,8 +16,123 @@
 	</div>
 </aside>
 <script language="javascript" type="text/javascript">
+	var idCaptor = window.location.hash.split('-').length > 1 ? window.location.hash.split('-')[1] : false;
+
 	$('#telemetry a').click(function() {
 		let href = $(this).attr('href').split('#')[1];
 		$('section').load(`/${href}`);
 	});
+
+	if(idCaptor) {
+		var request = xhr.getLastInstantValue(idCaptor);
+		var listeChart = xhr.getDataByOnceCaptor(idCaptor);
+
+		$('.global-menu').remove();
+		$('#telemetry').load('/once', () => {
+			var jauge = {
+				chart: Highcharts.chart('jauge', Highcharts.merge(gaugeOptions, {
+					yAxis: {
+						min: parseInt(request.unitMin),
+						max: parseInt(request.unitMax),
+						title: {
+							text: request.name
+						}
+					},
+
+					credits: {
+						enabled: false
+					},
+
+					series: [{
+						name: request.name,
+						data: [parseFloat(request.value)],
+						dataLabels: {
+							format:
+								'<div style="text-align:center">' +
+								'<span style="font-size:30px">{y}</span><br/>' +
+								`<span style="font-size:12px;opacity:0.4">${request.unit}</span>` +
+								'</div>'
+						},
+
+						tooltip: {
+							valueSuffix: request.unit
+						}
+					}]
+				})),
+				idCaptor: idCaptor
+			};
+
+			var charts = new Highcharts.Chart({ // Créer un object HighChart en JS
+				chart: {
+					renderTo: 'chart', // Sélectionner la balise html pour l'afficher
+					type: 'spline',
+					backgroundColor: null
+				},
+
+				title: {
+					text: listeChart.name,
+					style:{
+						color: '#4572A7'
+					}
+				},
+
+				legend: { // La légende
+					enabled: true,
+					backgroundColor: 'white',
+					borderRadius: 14
+				},
+
+				xAxis: {
+					type: 'datetime',
+					dateTimeLabelFormats: {
+						month: '%e. %b', // Formatage sur le mois
+						year: '%b' // Formatage sur l'année
+					}
+				},
+
+				yAxis: [{
+					labels: {
+						format: `{value} ${listeChart.unit}`,
+						style: {
+							color: '#C03000'
+						}
+					},
+				}],
+
+				tooltip: {
+					shared: true,
+					crosshairs: true,
+					borderRadius: 6,
+					borderWidth: 3,
+					xDateFormat: '%A %e %b  %H:%M:%S',
+					valueSuffix: ` ${listeChart.unit}`
+				},
+
+				plotOptions: {
+					spline: {
+						marker: {
+							enabled: false
+						}
+					}
+				},
+
+				series: [
+					{
+						name: listeChart.name,
+						color: listeChart.color,
+						zIndex: 1,
+						data: listeChart.data // c'est ici qu'on insert les data
+					}
+				]
+			});
+
+			if(gaugeInterval)
+				clearInterval(gaugeInterval);
+
+			var gaugeInterval = setInterval(() => {
+				if(jauge)
+					xhr.getLastValueFor(jauge.chart.series[0].points[0], jauge.idCaptor);
+			}, 2000);
+		});
+	}
 </script>

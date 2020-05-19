@@ -54,6 +54,20 @@ class xhr {
 	}
 
 	/**
+	 * get last value from measure name for instant in telemetry
+	 * @param {string} id measure name
+	 */
+	static getLastInstantValue(id) {
+		return $.ajax({
+			async: false,
+			url: '/?getLastValueFor',
+			type: 'post',
+			data: `id=${id}`,
+			dataType: 'json'
+		}).responseJSON.response;
+	}
+
+	/**
 	 * get last values measures for instant
 	 * @return {array} json response
 	 */

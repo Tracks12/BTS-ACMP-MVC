@@ -39,6 +39,11 @@
 			$page = 'telemetry/telemetry.html';
 			break;
 
+		case "/once": // About Page
+			http_response_code(200);
+			$page = 'telemetry/once.html';
+			break;
+
 		case "/instant": // About Page
 			http_response_code(200);
 			$page = 'telemetry/instant.html';

@@ -9,39 +9,39 @@
 	/**
 	 * Nav Bar Responsive
 	 */
-	nav {
+	.navbar {
 		overflow: auto;
 		max-height: 100%;
 		padding-left: 0;
 		position: fixed;
 	}
 
-	nav div { display: block; }
+	.navbar div { display: block; }
 
-	nav ul {
+	.navbar ul {
 		display: none;
 		position: relative;
 	}
 
-	nav ul li {
+	.navbar ul li {
 		display: block;
 		overflow: auto;
 	}
 
-	nav ul .title {
+	.navbar ul .title {
 		left: inherit;
 		right: 0;
 		top: 0;
 	}
 
-	nav ul .button:last-child {
+	.navbar ul .button:last-child {
 		border-top: 1px solid rgba(255, 255, 255, .2);
 		margin-top: 5px;
 		position: inherit;
 		right: inherit;
 	}
 
-	nav ul ul {
+	.navbar ul ul {
 		background: rgb(45, 45, 45);
 		box-shadow: none;
 		position: relative;

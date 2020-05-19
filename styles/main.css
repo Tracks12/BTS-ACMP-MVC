@@ -25,7 +25,7 @@ html, body {
 /**
  * Nav Bar
  */
-nav {
+.navbar {
 	background: rgb(50, 50, 50);
 	box-shadow: 0 0 15px rgba(0, 0, 0, .3);
 	color: var(--contrast-color);
@@ -36,24 +36,24 @@ nav {
 	z-index: 5;
 }
 
-nav div {
+.navbar div {
 	cursor: pointer;
 	display: none;
 	padding: 15px;
 }
 
-nav ul {
+.navbar ul {
 	background: rgb(50, 50, 50);
 	list-style-type: none;
 	position: relative;
 }
 
-nav ul li {
+.navbar ul li {
 	display: inline-block;
 	text-transform: capitalize;
 	transition: all .3s;
 }
-nav ul .title {
+.navbar ul .title {
 	font-family: "ROCKET";
 	font-size: 1.1em;
 	font-weight: bold;
@@ -61,14 +61,14 @@ nav ul .title {
 	position: fixed;
 	text-transform: uppercase;
 }
-nav ul .title:hover {
+.navbar ul .title:hover {
 	text-shadow: 0 0 10px currentColor;
 }
-nav ul .button:last-child {
+.navbar ul .button:last-child {
 	position: fixed;
 	right: 0;
 }
-nav ul li::after {
+.navbar ul li::after {
 	background: currentColor;
 	content: '';
 	display: block;
@@ -78,10 +78,10 @@ nav ul li::after {
 	transition: width .2s;
 	width: 0;
 }
-nav ul li:hover { background: rgba(255, 255, 255, .1); }
-nav ul li:hover:after { box-shadow: 0 2px 10px currentColor; width: 100%; }
+.navbar ul li:hover { background: rgba(255, 255, 255, .1); }
+.navbar ul li:hover:after { box-shadow: 0 2px 10px currentColor; width: 100%; }
 
-nav ul li a, nav ul li i {
+.navbar ul li a, nav ul li i {
 	color: currentColor;
 	cursor: pointer;
 	display: block;
@@ -90,21 +90,21 @@ nav ul li a, nav ul li i {
 	font-style: normal;
 }
 
-nav ul ul {
+.navbar ul ul {
 	box-shadow: 0 0 15px rgba(0, 0, 0, .3);
 	display: none;
 	min-width: 200px;
 	position: absolute;
 }
 
-nav ul ul li { display: block; }
-nav ul ul li::after { display: none; }
-nav ul li:hover ul { display: block; }
+.navbar ul ul li { display: block; }
+.navbar ul ul li::after { display: none; }
+.navbar ul li:hover ul { display: block; }
 
-nav ul li .ico {
+.navbar ul li .ico {
 	padding-right: 10px;
 }
-nav ul li .row {
+.navbar ul li .row {
 	padding-left: 15px;
 	float: right;
 }
