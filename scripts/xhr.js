@@ -18,7 +18,7 @@ class xhr {
 			async: false,
 			url: '/?ping',
 			type: 'post',
-			dataType: 'json',
+			dataType: 'json'
 		}).responseJSON;
 	}
 
@@ -31,7 +31,7 @@ class xhr {
 			async: false,
 			url: '/?getLastCaptorsPositions',
 			type: 'post',
-			dataType: 'json',
+			dataType: 'json'
 		}).responseJSON.response;
 	}
 
