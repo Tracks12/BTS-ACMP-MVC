@@ -51,7 +51,7 @@
 
 		case "/story": // About Page
 			http_response_code(200);
-			$page = 'telemetry/story.php';
+			$page = 'telemetry/story.html';
 			break;
 
 		case "/captors": // About Page
