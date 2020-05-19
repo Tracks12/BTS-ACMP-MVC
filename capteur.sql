@@ -71,14 +71,16 @@ INSERT INTO `measures` (`idMeasure`, `idName`, `value`) VALUES
 
 CREATE TABLE `measuresName` (
 	`idName` int(11) NOT NULL COMMENT '[int(11)]',
-	`Name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(64)]',
-	`unit` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(16)]'
+	`name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(64)]',
+	`unit` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '[char(16)]',
+	`unitMin` int(8) NOT NULL COMMENT '[int(8)]',
+	`unitMax` int(8) NOT NULL COMMENT '[int(8)]'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `measuresName` (`idName`, `name`, `unit`) VALUES
-	(1, 'Ozone', 'dobson'),
-	(2, 'CO2', 'ppm'),
-	(3, 'Particules Fines', 'ppm');
+INSERT INTO `measuresName` (`idName`, `name`, `unit`, `unitMin`, `unitMax`) VALUES
+	(1, 'Ozone', 'ppb', 0, 200),
+	(2, 'CO2', 'ppm', 0, 1000),
+	(3, 'Particules Fines', 'µg/m³', 0, 200);
 
 -- --------------------------------------------------------
 
@@ -154,45 +156,46 @@ DELIMITER $$
 
 -- Procédures
 
--- GetLastCarbonData
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastCarbonData` ()  NO SQL
-SELECT `name`, `unit`, `value` / 100 AS `value`
-FROM `measures`
-JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-WHERE `measuresName`.idName = 2
-ORDER BY `measures`.idMeasure
-DESC
-LIMIT 1$$
-
--- GetLastData
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastData` (IN `measureName` VARCHAR(64) CHARSET utf8)  NO SQL
-SELECT `name`, `unit`, CASE
+-- GetLastAllData
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastAllData` ()  NO SQL
+SELECT `id`, `name`, `unit`, CASE
 		WHEN `name` = "CO2" THEN `value` / 100
 		ELSE `value`
-	END AS `value`
-FROM `measures`
-JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-WHERE `measuresName`.Name = measureName
+	END AS `value`, `unitMin`, `unitMax`
+FROM `data`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
+JOIN `measures` ON `measures`.idMeasure = `data`.idMeasure
+JOIN `measuresName` ON `measuresName`.idName = `measures`.idName
+WHERE `measures`.idMeasure IN (
+	SELECT MAX(`measures`.idMeasure)
+	FROM `measures`
+	JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+	WHERE `measuresName`.idName = 1
+	UNION
+	SELECT MAX(`measures`.idMeasure)
+	FROM `measures`
+	JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+	WHERE `measuresName`.idName = 2
+	UNION
+	SELECT MAX(`measures`.idMeasure)
+	FROM `measures`
+	JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
+	WHERE `measuresName`.idName = 3
+)
 ORDER BY `measures`.idMeasure
-DESC
-LIMIT 1$$
+DESC$$
 
--- GetLastOzoneData
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastOzoneData` ()  NO SQL
-SELECT `name`, `unit`, `value`
+-- GetLastData
+CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastData` (IN `id` VARCHAR(64) CHARSET utf8)  NO SQL
+SELECT `id`, `name`, `unit`, CASE
+		WHEN `name` = "CO2" THEN `value` / 100
+		ELSE `value`
+	END AS `value`, `unitMin`, `unitMax`
 FROM `measures`
+JOIN `data` ON `measures`.`idMeasure` = `data`.`idMeasure`
+JOIN `captors` ON `captors`.idCaptor = `data`.idCaptor
 JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-WHERE `measuresName`.idName = 1
-ORDER BY `measures`.idMeasure
-DESC
-LIMIT 1$$
-
--- GetLastParticulesData
-CREATE DEFINER=`acmp`@`localhost` PROCEDURE `GetLastParticulesData` ()  NO SQL
-SELECT `name`, `unit`, `value`
-FROM `measures`
-JOIN `measuresName` ON `measures`.idName = `measuresName`.idName
-WHERE `measuresName`.idName = 3
+WHERE `captors`.`id` = id
 ORDER BY `measures`.idMeasure
 DESC
 LIMIT 1$$
@@ -260,8 +263,7 @@ DESC$$
 
 -- listLastDataByCaptor
 CREATE DEFINER=`acmp`@`localhost` PROCEDURE `listLastDataByCaptor` ()  NO SQL
-SELECT `id`, `name`, `unit`,
-	CASE
+SELECT `id`, `name`, `unit`, CASE
 		WHEN `name` = "CO2" THEN `value` / 100
 		ELSE `value`
 	END AS `value`, `rssi`, `lat`, `lon`, `time`
