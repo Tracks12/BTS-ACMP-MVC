@@ -120,7 +120,7 @@ $(document).ready(() => {
 		})
 		.scrolly();
 
-	$('#signIn, section').click(() => {
+	$('#signIn, section, .navbar .lnk').click(() => {
 		if($(window).width() < 720)
 			$('.navbar ul').slideUp();
 	});
