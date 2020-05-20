@@ -5,26 +5,28 @@
 	<div id="ozone-chart" style="width: 100%; height: 400px;"></div>
 	<div id="particules-chart" style="width: 100%; height: 400px;"></div>
 	<script type="text/javascript">
-		var listeChart = [
-			{ // CO2
-				data: xhr.getDataByOnceCaptor('3100000000000001'),
-				render: 'carbon-chart'
-			},
-			{ // Ozone
-				data: xhr.getDataByOnceCaptor('3100000000000002'),
-				render: 'ozone-chart'
-			},
-			{ // Particules Fines
-				data: xhr.getDataByOnceCaptor('3100000000000003'),
-				render: 'particules-chart'
-			}
-		];
+		var captors = xhr.getLastValues();
+		var listeChart = [];
 		var charts = [];
+
+		captors.forEach((item) => {
+			let type = null;
+			switch(item.name) {
+				case 'CO2': type = 'carbon'; break;
+				case 'Ozone': type = 'ozone'; break;
+				case 'Particules Fines': type = 'particules'; break;
+			}
+
+			listeChart.push({
+				data: xhr.getDataByOnceCaptor(item.id),
+				render: type
+			});
+		});
 
 		for(let i = 0; i < listeChart.length; i++)
 			charts[i] = new Highcharts.Chart({ // Créer un object HighChart en JS
 				chart: {
-					renderTo: listeChart[i].render, // Sélectionner la balise html pour l'afficher
+					renderTo: `${listeChart[i].render}-chart`, // Sélectionner la balise html pour l'afficher
 					type: 'spline',
 					backgroundColor: null
 				},
