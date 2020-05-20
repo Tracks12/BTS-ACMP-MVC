@@ -5,20 +5,20 @@
 <!DOCTYPE html>
 <!-- INSTANT -->
 <aside id="instant">
-	<figure class="highcharts-figure">
-		<div id="0" class="chart-container"></div>
-	</figure>
-	<figure class="highcharts-figure">
-		<div id="1" class="chart-container"></div>
-	</figure>
-	<figure class="highcharts-figure">
-		<div id="2" class="chart-container"></div>
-	</figure>
 	<script type="text/javascript">
 		var request = xhr.getLastValues();
 		var jauge = [];
 
-		for(let i = 0; i < request.length; i++)
+		for(let i = 0; i < request.length; i++) {
+			let figure = [
+				'<figure class="highcharts-figure">',
+					`<h3>${request[i].id}</h3>`,
+					`<div id="${i}" class="chart-container"></div>`,
+				'</figure>'
+			];
+
+			$("#instant").append(figure.join(""));
+
 			jauge[i] = {
 				chart: Highcharts.chart(`${i}`, Highcharts.merge(gaugeOptions, {
 					yAxis: {
@@ -51,6 +51,7 @@
 				})),
 				idCaptor: request[i].id
 			};
+		}
 
 		if(gaugeInterval)
 			clearInterval(gaugeInterval);

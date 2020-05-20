@@ -429,15 +429,25 @@ section aside {
 /**
  * Gauge
  */
+#instant {
+	padding-top: 5em;
+	text-align: center;
+}
+
+#instant .highcharts-figure h3 {
+	display: block;
+}
+
 #instant .highcharts-figure .chart-container {
-	width: 300px;
+	display: table;
 	height: 200px;
-	float: left;
+	width: 300px;
 }
 
 #instant .highcharts-figure, .highcharts-data-table table {
-	width: 600px;
+	display: inline-block;
 	margin: 0 auto;
+	width: auto;
 }
 
 #instant .highcharts-data-table table {
