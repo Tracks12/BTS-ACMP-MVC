@@ -18,6 +18,7 @@
 			}
 
 			listeChart.push({
+				id: item.id,
 				data: xhr.getDataByOnceCaptor(item.id),
 				render: type
 			});
@@ -67,7 +68,7 @@
 					borderRadius: 6,
 					borderWidth: 3,
 					xDateFormat: '%A %e %b  %H:%M:%S',
-					valueSuffix: ` ${listeChart[i].data.unit}`
+					valueSuffix: listeChart[i].data.unit
 				},
 
 				plotOptions: {
@@ -80,7 +81,7 @@
 
 				series: [
 					{
-						name: listeChart[i].data.name,
+						name: listeChart[i].id,
 						color: listeChart[i].data.color,
 						zIndex: 1,
 						data: listeChart[i].data.data // c'est ici qu'on insert les data
