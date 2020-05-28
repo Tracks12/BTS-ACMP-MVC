@@ -73,7 +73,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tracks12/BTS-ACMP-MVC/"
+    "url": "git+https://github.com/Tracks12/BTS-ACMP-MVC.git"
   },
   "scripts": {
     "start": "node red.js"
