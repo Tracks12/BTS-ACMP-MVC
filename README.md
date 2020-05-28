@@ -247,6 +247,9 @@ And call the request like this: `xhr.ping();`.
 
 ## Last Update
 
+### May 28, 2020
+* Add Logger Requests
+
 ### May 4, 2020
 * Update Map
 * Update Graph
@@ -255,4 +258,4 @@ And call the request like this: `xhr.ping();`.
 * Dynamic Nav Bar
 * Script fixed
 * Add Doc
-* MVD Design
+* MVC Design
