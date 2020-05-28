@@ -103,15 +103,15 @@ After cloning the repository you need to create the database connection file in 
 
 ### Telemetry
 
-* real-time data: `/core/views/telemetry/instant.php`
+* real-time data: `/core/views/telemetry/instant.html`
 Retrieves the last data from a desired sensor and displays it at a gauge in js
 
-* story data: `/core/views/telemetry/story.php`
+* story data: `/core/views/telemetry/story.html`
 Displays graphs of pollution sensor data (Ozones, CO2, Fine Particles)
 
 ### Map
 
-* sensor map: `/core/views/map.php`
+* sensor map: `/core/views/map.html`
 Displays the pollution sensors on a Here map
 
 ---
@@ -249,6 +249,8 @@ And call the request like this: `xhr.ping();`.
 
 ### May 28, 2020
 * Add Logger Requests
+* Input XHR Request for views
+* transforms all views on html content
 
 ### May 4, 2020
 * Update Map
