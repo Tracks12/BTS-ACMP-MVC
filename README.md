@@ -1,7 +1,6 @@
 # Pollution sensor mapping
 
 ## [ACMP Project](http://92.222.109.216/)
-
 BTS training project, a map displaying telemetry data from the LoraWan pollution sensor network provided by Tetaneutral.
 
 > This is a redesign of [BTS-ACMP-Captor-Interface](https://github.com/Tracks12/BTS-ACMP-Captor-Interface).
@@ -11,58 +10,57 @@ BTS training project, a map displaying telemetry data from the LoraWan pollution
 ## Clone the repository
 
 ### Windows Users
-* Download & Install [Git Bash](https://gitforwindows.org/)
+- Download & Install [Git Bash](https://gitforwindows.org/)
 
 ### Linux Users
-* Type `sudo apt install git` on your terminal
+- Type `sudo apt install git` on your terminal
 
 After Git installation type `git clone https://github.com/Tracks12/BTS-ACMP-MVC.git` to clone the repository.
 
 After cloning the repository you need to create the database connection file in the `/core` directory which will be called `connect.php` with inside:
 
 ```php
-<?php
-	class bdd {
-		/**
-		 * disconnect to the database
-		 * @return void
-		 */
-		public static function disconnect(): void {
-			self::$bdd['db'] = NULL;
-			return;
-		}
-
-		/**
-		 * connect to the database
-		 * @return object[PDO] database object
-		 */
-		public static function connect(): PDO {
-			try {
-				self::$bdd['db'] = new PDO(
-					'mysql:host='.self::$bdd['host'].'; dbname='.self::$bdd['name'].'; charset='.self::$bdd['char'],
-					self::$bdd['user'],
-					self::$bdd['pass'],
-					[ PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING ]
-				);
-			}
-
-			catch(Exception $e) {
-				die("[Err]:[{$e->getmessage()}]");
-			}
-
-			return self::$bdd['db'];
-		}
-
-		// Data Base auth fields
-		private static $bdd = [
-			"db"   => NULL,
-			"host" => "...",
-			"name" => "...",
-			"char" => "utf8",
-			"user" => "...",
-			"pass" => "..."
-		];
+class bdd {
+	/**
+	 * disconnect to the database
+	 * @return void
+	 */
+	public static function disconnect(): void {
+		self::$bdd['db'] = NULL;
+		return;
 	}
+
+	/**
+	 * connect to the database
+	 * @return object[PDO] database object
+	 */
+	public static function connect(): PDO {
+		try {
+			self::$bdd['db'] = new PDO(
+				'mysql:host='.self::$bdd['host'].'; dbname='.self::$bdd['name'].'; charset='.self::$bdd['char'],
+				self::$bdd['user'],
+				self::$bdd['pass'],
+				[ PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING ]
+			);
+		}
+
+		catch(Exception $e) {
+			die("[Err]:[{$e->getmessage()}]");
+		}
+
+		return self::$bdd['db'];
+	}
+
+	// Data Base auth fields
+	private static $bdd = [
+		"db"   => NULL,
+		"host" => "...",
+		"name" => "...",
+		"char" => "utf8",
+		"user" => "...",
+		"pass" => "..."
+	];
+}
 ```
 
 ---
@@ -70,10 +68,13 @@ After cloning the repository you need to create the database connection file in 
 ## Dependencies
 
 ### Front (Styles & Scripts)
-* [Here Map](https://developer.here.com/)
-* [HighCharts 8.0.4](https://www.highcharts.com/blog/download/?_ga=2.170300512.1736851386.1588551901-428133042.1582636352)
-* [JQuery 3.4.1](https://api.jquery.com/)
-* [Font Awesome 4.7.0](https://fontawesome.com/v4.7.0/)
+
+Librairies / API's | version
+------------------ | -------
+[Here Map](https://developer.here.com/) | /
+[HighCharts](https://www.highcharts.com/blog/download/?_ga=2.170300512.1736851386.1588551901-428133042.1582636352) | 8.0.4
+[JQuery](https://api.jquery.com/) | 3.4.1
+[Font Awesome](https://fontawesome.com/v4.7.0/) | 4.7.0
 
 ### Fonts
 * [Lato](http://www.latofonts.com/lato-free-fonts/)
@@ -239,6 +240,43 @@ class xhr {
 ```
 
 And call the request like this: `xhr.ping();`.
+
+---
+
+## To do list
+
+- [x] @Laurent-Andrieu in charge to establish the connection to the LoRaWan network
+	- [x] Creating the LoRaWan profile
+	- [x] Creation of the flow node red
+	- [x] LoRaWan connection to the Node Red server
+	- [x] Insertion of data in the database
+	- [x] Creation of the node red UI
+
+
+- [ ] @Tracks12 in charge of setting up the web architecture and editing the cartography
+	- [x] Implementation of the MVC architecture
+	- [x] Integration of front-end dependencies
+	- [x] Controllers, Models, Routes & Views creations (Map, Instant, Story)
+	- [x] XHR query creation
+	- [x] Editing the style sheet design
+	- [x] Display of sensor positions on a map
+	- [x] User Profile
+	- [ ] Captor management
+	- [ ] User management
+
+
+- [x] @MENEGHE in charge of installing and configuring the web server as well as managing access ports
+	- [x] Fedora Server system installation
+	- [x] Apache, MySQL, Php & PhpMyAdmin (LAMPP) installation
+	- [x] Ports configuration
+	- [x] Display historical curves
+
+
+- [x] @Flopicx in charge of installing and creating the database
+	- [x] Database building
+	- [x] Edits of sql procedures
+	- [x] Integration of ROT13 function
+	- [x] Display instant data gauge
 
 ---
 
