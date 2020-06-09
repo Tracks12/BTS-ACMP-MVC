@@ -1,0 +1,33 @@
+<!-- ADMIN -->
+<aside id="admin">
+	<div class="global-menu">
+		<a class="item" href="#captors">
+			<span class="ico fa fa-server"></span>
+			<span class="label">capteurs</span>
+		</a>
+		<a class="item" href="#users">
+			<span class="ico fa fa-users"></span>
+			<span class="label">utilisateurs</span>
+		</a>
+		<a class="item" target="_blank" href="/pma">
+			<span class="ico fa fa-database"></span>
+			<span class="label">PMA</span>
+		</a>
+		<a class="item" target="_blank" href="/node-red">
+			<span class="ico fa fa-code"></span>
+			<span class="label">node red</span>
+		</a>
+		<a class="item" target="_blank" href="/ui">
+			<span class="ico fa fa-globe"></span>
+			<span class="label">UI</span>
+		</a>
+	</div>
+</aside>
+<script language="javascript" type="text/javascript">
+	$('#admin a').click(function() {
+		let href = $(this).attr('href').split('#')[1];
+
+		if(href)
+			$('section').load(`/${href}`);
+	});
+</script>

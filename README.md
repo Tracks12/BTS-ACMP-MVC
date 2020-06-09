@@ -233,10 +233,7 @@ class xhr {
 			type: 'post',
 			url: '/?ping',
 			dataType: 'json',
-			success: (result) => {
-				return result.response;
-			}
-		}).responseJSON;
+		}).responseJSON.response;
 	}
 }
 ```

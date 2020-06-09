@@ -34,7 +34,7 @@
 		 */
 
 		require_once('./core/HTTPRoute.php');
-		log::write('HTTP');
+		log::write(strtoupper($_SERVER['REQUEST_SCHEME']));
 	}
 
 	/**

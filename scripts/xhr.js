@@ -163,8 +163,11 @@ class xhr {
 			type: 'post',
 			dataType: 'json',
 			success: (result) => {
+				document.location.hash = '';
+
 				$('#signOut').fadeOut(() => $('#signIn').fadeIn());
 				$('#captorNav').fadeOut();
+				$('section').load(`/map`);
 			}
 		});
 	}

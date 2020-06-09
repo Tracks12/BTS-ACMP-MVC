@@ -54,10 +54,32 @@
 			$page = 'telemetry/story.html';
 			break;
 
-		case "/captors": // About Page
+		case "/admin": // Captors Manager Page
 			if(isset($_SESSION['isAdmin'])) {
 				http_response_code(200);
-				$page = 'captors/captors.html';
+				$page = 'admin/admin.html';
+			}
+
+			else
+				http_response_code(404);
+
+			break;
+
+		case "/captors": // Captors Manager Page
+			if(isset($_SESSION['isAdmin'])) {
+				http_response_code(200);
+				$page = 'admin/captors.html';
+			}
+
+			else
+				http_response_code(404);
+
+			break;
+
+		case "/users": // Users Manager Page
+			if(isset($_SESSION['isAdmin'])) {
+				http_response_code(200);
+				$page = 'admin/users.html';
 			}
 
 			else
