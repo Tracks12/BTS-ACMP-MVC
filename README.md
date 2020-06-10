@@ -71,6 +71,7 @@ class bdd {
 ## **Dependencies**
 
 ### Front (Styles & Scripts)
+
 Librairies / API's | version
 ------------------ | -------
 [Here Map](https://developer.here.com/) | /
