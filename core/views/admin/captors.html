@@ -3,10 +3,9 @@
 	<div class="container">
 		<table id="captor-list">
 			<tr>
-				<th>id</th>
 				<th>nom</th>
-				<th>date d'enregistrement</th>
-				<th>action</th>
+				<th>enregistré le</th>
+				<th>actions</th>
 			</tr>
 		</table>
 		<button>
@@ -19,10 +18,9 @@
 
 	captorsList.forEach((item) => {
 		let cell = [
-			'<tr>',
-				`<td>${item.idCaptor}</td>`,
+			`<tr id="captor-${item.idCaptor}">`,
 				`<td>${item.id}</td>`,
-				`<td>${item.registerTime}</td>`,
+				`<td>${new Date(item.registerTime).toLocaleString()}</td>`,
 				'<td>',
 					'<button><span class="fa fa-edit"></span></button>',
 					'<button><span class="fa fa-trash"></span></button>',

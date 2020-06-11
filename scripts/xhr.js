@@ -109,6 +109,19 @@ class xhr {
 	}
 
 	/**
+	 * get list of registered users
+	 * @return {object} json response
+	 */
+	static getUsers() {
+		return $.ajax({
+			async: false,
+			url: '/?getUsers',
+			type: 'post',
+			dataType: 'json'
+		}).responseJSON.response;
+	}
+
+	/**
 	 * check is connected
 	 */
 	static isConnect() {

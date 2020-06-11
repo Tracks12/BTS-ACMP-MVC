@@ -1,7 +1,39 @@
 <!-- USERS -->
 <aside id="users">
-
+	<div class="container">
+		<table id="captor-list">
+			<tr>
+				<th>nichandle</th>
+				<th>adresse mail</th>
+				<th>date de connexion</th>
+				<th>adresse</th>
+				<th>admin</th>
+				<th>actions</th>
+			</tr>
+		</table>
+		<button>
+			<span class="fa fa-plus"></span>
+		</button>
+	<div>
 </aside>
 <script language="javascript" type="text/javascript">
+	var usersList = xhr.getUsers();
 
+	usersList.forEach((item) => {
+		let cell = [
+			`<tr id="user-${item.idUser}">`,
+				`<td>${item.nichandle}</td>`,
+				`<td>${item.mail}</td>`,
+				`<td>${new Date(item.lastConnect).toLocaleString()}</td>`,
+				`<td>${item.lastAddr}</td>`,
+				`<td>${item.isAdmin ? 'oui' : 'non'}</td>`,
+				'<td>',
+					'<button><span class="fa fa-edit"></span></button>',
+					'<button><span class="fa fa-trash"></span></button>',
+				'</td>',
+			'</tr>'
+		];
+
+		$('#captor-list').append(cell.join(''));
+	});
 </script>

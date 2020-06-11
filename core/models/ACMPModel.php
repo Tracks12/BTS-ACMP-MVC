@@ -116,6 +116,20 @@
 		}
 
 		/**
+		 * get list of registered users
+		 * @return array all login rows
+		 */
+		public function getUsers(): array {
+			$bdd = bdd::connect();
+			$req = $bdd->query('
+				SELECT `idUser`, `nichandle`, `mail`, `lastConnect`, `lastAddr`, `isAdmin`
+				FROM `users`
+			');
+
+			return $req->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		/**
 		 * get list of login table
 		 * @return array all login rows
 		 */

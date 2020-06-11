@@ -16,8 +16,22 @@
 		 */
 
 		case '/?getCaptors':
-			$return["response"] = ACMPModel::getCaptors();
-			break;
+			if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'])
+				$return["response"] = ACMPModel::getCaptors();
+
+			else {
+				http_response_code(404);
+				$return = [ "code" => 404, "error" => "NOT FOUND !" ];
+			} break;
+
+		case '/?getUsers':
+			if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'])
+				$return["response"] = ACMPModel::getUsers();
+
+			else {
+				http_response_code(404);
+				$return = [ "code" => 404, "error" => "NOT FOUND !" ];
+			} break;
 
 		case '/?getLastCaptorsPositions':
 			$return["response"] = ACMPModel::getLastDataByCaptor();
