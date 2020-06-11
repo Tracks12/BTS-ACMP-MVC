@@ -23,6 +23,19 @@ class xhr {
 	}
 
 	/**
+	 * get list of captors
+	 * @return {object} json response
+	 */
+	static getCaptors() {
+		return $.ajax({
+			async: false,
+			url: '/?getCaptors',
+			type: 'post',
+			dataType: 'json'
+		}).responseJSON.response;
+	}
+
+	/**
 	 * get last captors information's from data base
 	 * @return {object} json response
 	 */

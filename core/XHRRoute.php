@@ -5,6 +5,8 @@
 	 * Page   : XHRRoute.php
 	 */
 
+	$return = [ "response" => NULL ];
+
 	/**
 	 * Redirect URI
 	 */
@@ -13,36 +15,40 @@
 		 * XHR API Response
 		 */
 
+		case '/?getCaptors':
+			$return["response"] = ACMPModel::getCaptors();
+			break;
+
 		case '/?getLastCaptorsPositions':
-			$return = [ "response" => ACMPModel::getLastDataByCaptor() ];
+			$return["response"] = ACMPModel::getLastDataByCaptor();
 			break;
 
 		case '/?getLastValueFor':
-			$return = [ "response" => ACMPModel::getLastValueFor(services::isInput($_POST['id'])) ];
+			$return["response"] = ACMPModel::getLastValueFor(services::isInput($_POST['id']));
 			break;
 
 		case '/?getLastValues':
-			$return = [ "response" => ACMPModel::getLastValues() ];
+			$return["response"] = ACMPModel::getLastValues();
 			break;
 
 		case '/?getDataByOnceCaptor':
-			$return = [ "response" => ACMPModel::getDataByOnceCaptor(services::isInput($_POST['id'])) ];
+			$return["response"] = ACMPModel::getDataByOnceCaptor(services::isInput($_POST['id']));
 			break;
 
 		case '/?signIn':
-			$return = [ "response" => ACMPController::signin(services::isInput($_POST['data'])) ];
+			$return["response"] = ACMPController::signin(services::isInput($_POST['data']));
 			break;
 
 		case '/?signOut':
-			$return = [ "response" => session_destroy() ];
+			$return["response"] = session_destroy();
 			break;
 
 		case '/?isConnect':
-			$return = [ "response" => $_SESSION ];
+			$return["response"] = $_SESSION;
 			break;
 
 		case '/?ping':
-			$return = [ "response" => "pong" ];
+			$return["response"] = "pong";
 			break;
 
 		default:

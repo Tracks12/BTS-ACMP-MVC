@@ -1,7 +1,35 @@
 <!-- CAPTORS -->
 <aside id="captors">
-
+	<div class="container">
+		<table id="captor-list">
+			<tr>
+				<th>id</th>
+				<th>nom</th>
+				<th>date d'enregistrement</th>
+				<th>action</th>
+			</tr>
+		</table>
+		<button>
+			<span class="fa fa-plus"></span>
+		</button>
+	<div>
 </aside>
 <script language="javascript" type="text/javascript">
-	
+	var captorsList = xhr.getCaptors();
+
+	captorsList.forEach((item) => {
+		let cell = [
+			'<tr>',
+				`<td>${item.idCaptor}</td>`,
+				`<td>${item.id}</td>`,
+				`<td>${item.registerTime}</td>`,
+				'<td>',
+					'<button><span class="fa fa-edit"></span></button>',
+					'<button><span class="fa fa-trash"></span></button>',
+				'</td>',
+			'</tr>'
+		];
+
+		$('#captor-list').append(cell.join(''));
+	});
 </script>
